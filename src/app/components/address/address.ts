@@ -2,13 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-adress',
+  selector: 'app-address',
   imports: [CommonModule],
-  templateUrl: './adress.html',
-  styleUrl: './adress.scss'
+  templateUrl: './address.html',
+  styleUrl: './address.scss'
 })
-export class Adress {
-  adress = {
+export class Address {
+  address = {
     street: 'Rua Fátima, 2597',
     neighborhood: 'Fátima',
     city: 'Joinville',
@@ -23,7 +23,7 @@ export class Adress {
   ];
 
   openMaps() {
-    const address = encodeURIComponent(`${this.adress.street}, ${this.adress.neighborhood}, ${this.adress.city}`);
+    const address = encodeURIComponent(`${this.address.street}, ${this.address.neighborhood}, ${this.address.city}`);
     window.open(`https://maps.google.com/maps?q=${address}`, '_blank');
   }
 }

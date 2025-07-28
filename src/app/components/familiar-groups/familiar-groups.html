@@ -5,8 +5,12 @@
             <p>Encontre o grupo ideal para você e sua família</p>
         </div>
 
+        <div class="pesquisa">
+            <input type="search" placeholder="Buscar por nome, foco, líder..." [(ngModel)]="searchTerm">
+        </div>
+
         <div class="grupos-grid">
-            <div class="grupo-card" *ngFor="let grupo of groups">
+            <div class="grupo-card" *ngFor="let grupo of filteredGroups()">
                 <div class="grupo-header">
                     <h3>{{ grupo.name }}</h3>
                     <span class="foco-badge" [ngClass]="getFocusClass(grupo.focus)">
@@ -17,7 +21,7 @@
                 <div class="grupo-info">
                     <div class="info-item">
                         <i class="fas fa-map-marker-alt"></i>
-                        <span>{{ grupo.adress }}</span>
+                        <span>{{ grupo.address }}</span>
                     </div>
 
                     <div class="info-item">
@@ -32,9 +36,15 @@
                 </div>
 
                 <div class="grupo-actions">
-                    <button class="btn btn-outline">Mais Informações</button>
+                    <a class="btn btn-outline" [href]="'https://wa.me/' + grupo.phone" target="_blank" rel="noopener">
+                        Fale com o líder
+                    </a>
                 </div>
             </div>
+        </div>
+
+        <div class="no-results" *ngIf="filteredGroups().length === 0">
+            Nenhum grupo encontrado com esse critério.
         </div>
     </div>
 </section>

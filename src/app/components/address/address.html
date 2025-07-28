@@ -10,9 +10,9 @@
                 <div class="info-card">
                     <h3>Endereço</h3>
                     <div class="endereco-details">
-                        <p><strong>{{ adress.street }}</strong></p>
-                        <p>{{ adress.neighborhood }} - {{ adress.city }}</p>
-                        <p>CEP: {{ adress.cep }}</p>
+                        <p><strong>{{ address.street }}</strong></p>
+                        <p>{{ address.neighborhood }} - {{ address.city }}</p>
+                        <p>CEP: {{ address.cep }}</p>
                         <button class="btn btn-outline" (click)="openMaps()">
                             <i class="fas fa-map"></i>
                             Ver no Mapa
@@ -23,8 +23,8 @@
                 <div class="info-card">
                     <h3>Contato</h3>
                     <div class="contato-details">
-                        <p><i class="fas fa-phone"></i> {{ adress.celphone }}</p>
-                        <p><i class="fas fa-envelope"></i> {{ adress.email }}</p>
+                        <p><i class="fas fa-phone"></i> {{ address.celphone }}</p>
+                        <p><i class="fas fa-envelope"></i> {{ address.email }}</p>
                     </div>
                 </div>
 

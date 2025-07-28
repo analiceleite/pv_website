@@ -1,8 +1,8 @@
 export interface FamiliarGroup {
     name: string,
-    adress: string,
+    address: string,
     hour: string,
-    focus: "Misto" | "Mulheres" | "Homens" | "Adolescentes",
+    focus: "Misto" | "Mulheres" | "Homens" | "Meninas",
     lider: string,
-    contact?: string
+    phone?: string
 }
