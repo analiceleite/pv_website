@@ -1,0 +1,126 @@
+@import '../../style/variables';
+
+.endereco {
+    padding: 100px 0;
+    background: linear-gradient(135deg, $light-gray, $white);
+
+    .endereco-content {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 60px;
+
+        @media (max-width: $tablet) {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+    }
+
+    .endereco-info {
+        display: grid;
+        gap: 30px;
+
+        .info-card {
+            background: $white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+
+            h3 {
+                font-size: 1.5rem;
+                color: $primary-gray;
+                margin-bottom: 20px;
+                position: relative;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10px;
+                    left: 0;
+                    width: 40px;
+                    height: 3px;
+                    background: $primary-red;
+                    border-radius: 2px;
+                }
+            }
+
+            .endereco-details {
+                p {
+                    margin-bottom: 10px;
+                    color: $text-light;
+
+                    strong {
+                        color: $primary-gray;
+                    }
+                }
+
+                button {
+                    margin-top: 20px;
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+
+            .contato-details {
+                p {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 15px;
+                    color: $text-light;
+
+                    i {
+                        color: $primary-red;
+                        margin-right: 15px;
+                        width: 20px;
+                    }
+                }
+            }
+
+            .horarios-list {
+                .horario-item {
+                    display: flex;
+                    flex-direction: column;
+                    margin-bottom: 15px;
+                    padding: 15px;
+                    background: $light-gray;
+                    border-radius: 10px;
+
+                    strong {
+                        color: $primary-gray;
+                        font-size: 1.1rem;
+                    }
+
+                    span {
+                        color: $text-light;
+                        font-size: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .mapa-placeholder {
+        background: $white;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 400px;
+
+        .mapa-content {
+            text-align: center;
+            color: $text-light;
+
+            i {
+                font-size: 4rem;
+                color: $primary-red;
+                margin-bottom: 20px;
+            }
+
+            p {
+                max-width: 250px;
+            }
+        }
+    }
+}

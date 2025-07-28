@@ -1,0 +1,50 @@
+<section id="endereco" class="endereco">
+    <div class="container">
+        <div class="section-header">
+            <h2>Venha Nos Conhecer</h2>
+            <p>Endereço, horários e contato da nossa igreja</p>
+        </div>
+
+        <div class="endereco-content">
+            <div class="endereco-info">
+                <div class="info-card">
+                    <h3>Endereço</h3>
+                    <div class="endereco-details">
+                        <p><strong>{{ adress.street }}</strong></p>
+                        <p>{{ adress.neighborhood }} - {{ adress.city }}</p>
+                        <p>CEP: {{ adress.cep }}</p>
+                        <button class="btn btn-outline" (click)="openMaps()">
+                            <i class="fas fa-map"></i>
+                            Ver no Mapa
+                        </button>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>Contato</h3>
+                    <div class="contato-details">
+                        <p><i class="fas fa-phone"></i> {{ adress.celphone }}</p>
+                        <p><i class="fas fa-envelope"></i> {{ adress.email }}</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>Horários dos Cultos</h3>
+                    <div class="horarios-list">
+                        <div class="horario-item" *ngFor="let culto of schedule">
+                            <strong>{{ culto.day }} - {{ culto.hour }}</strong>
+                            <span>{{ culto.type }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mapa-placeholder">
+                <div class="mapa-content">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <p>Clique em "Ver no Mapa" para abrir a localização no Google Maps</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

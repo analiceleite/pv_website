@@ -1,0 +1,60 @@
+<section id="radio" class="radio-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Mídia & Transmissões</h2>
+            <p>Acompanhe nossa programação 24 horas no ar</p>
+        </div>
+
+        <div class="radio-content">
+            <!-- Card da Rádio -->
+            <div class="media-card radio-card">
+                <div class="live-indicator">AO VIVO</div>
+                <div class="media-icon">
+                    <i class="fas fa-broadcast-tower"></i>
+                </div>
+                <h3>Rádio Palavra da Vida</h3>
+                <p>Música gospel, pregações inspiradoras e programas especiais que edificam sua fé</p>
+                <button class="btn btn-primary" (click)="openRadio()">
+                    <i class="fas fa-play"></i>
+                    Ouvir Agora
+                </button>
+
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">No Ar</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">FM</span>
+                        <span class="stat-label">Frequência</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do YouTube -->
+            <div class="media-card youtube-card">
+                <div class="live-indicator">LIVE</div>
+                <div class="media-icon">
+                    <i class="fab fa-youtube"></i>
+                </div>
+                <h3>Cultos ao Vivo</h3>
+                <p>Assista aos cultos, estudos bíblicos e eventos especiais transmitidos diretamente do templo</p>
+                <button class="btn btn-secondary" (click)="openYoutube()">
+                    <i class="fas fa-video"></i>
+                    Assistir Live
+                </button>
+
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">{{ youtubeStats.subscribers }}</span>
+                        <span class="stat-label">Inscritos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">HD</span>
+                        <span class="stat-label">Qualidade</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

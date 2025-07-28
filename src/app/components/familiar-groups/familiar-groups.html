@@ -1,0 +1,40 @@
+<section id="grupos" class="grupos-familiares">
+    <div class="container">
+        <div class="section-header">
+            <h2>Grupos Familiares</h2>
+            <p>Encontre o grupo ideal para você e sua família</p>
+        </div>
+
+        <div class="grupos-grid">
+            <div class="grupo-card" *ngFor="let grupo of groups">
+                <div class="grupo-header">
+                    <h3>{{ grupo.name }}</h3>
+                    <span class="foco-badge" [ngClass]="getFocusClass(grupo.focus)">
+                        {{ grupo.focus }}
+                    </span>
+                </div>
+
+                <div class="grupo-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>{{ grupo.adress }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>{{ grupo.hour }}</span>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-user"></i>
+                        <span>{{ grupo.lider }}</span>
+                    </div>
+                </div>
+
+                <div class="grupo-actions">
+                    <button class="btn btn-outline">Mais Informações</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

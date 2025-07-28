@@ -1,0 +1,22 @@
+<header class="header">
+    <div class="container">
+        <div class="nav-brand">
+            <img src="../../assets/logo.jpg" alt="Igreja Palavra da Vida" class="logo">
+            <h1>Palavra da Vida</h1>
+        </div>
+
+        <nav class="nav-menu" [class.active]="isMenuOpen">
+            <ul>
+                <li *ngFor="let item of menuItems">
+                    <a [href]="item.link" (click)="isMenuOpen = false">{{ item.label }}</a>
+                </li>
+            </ul>
+        </nav>
+
+        <button class="menu-toggle" (click)="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
