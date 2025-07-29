@@ -5,27 +5,34 @@
 
     .endereco-content {
         display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 60px;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 60px;
 
         @media (max-width: $tablet) {
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 30px;
         }
     }
 
     .endereco-info {
         display: grid;
-        gap: 30px;
+        gap: 25px;
 
         .info-card {
             background: $white;
-            padding: 40px;
+            padding: 30px;
             border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            }
 
             h3 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
                 color: $primary-gray;
                 margin-bottom: 20px;
                 position: relative;
@@ -33,9 +40,9 @@
                 &::after {
                     content: '';
                     position: absolute;
-                    bottom: -10px;
+                    bottom: -8px;
                     left: 0;
-                    width: 40px;
+                    width: 35px;
                     height: 3px;
                     background: $primary-red;
                     border-radius: 2px;
@@ -44,19 +51,36 @@
 
             .endereco-details {
                 p {
-                    margin-bottom: 10px;
+                    margin-bottom: 8px;
                     color: $text-light;
+                    line-height: 1.5;
 
                     strong {
                         color: $primary-gray;
+                        font-weight: 600;
                     }
                 }
 
-                button {
+                .map-buttons {
                     margin-top: 20px;
                     display: flex;
-                    align-items: center;
+                    flex-direction: column;
                     gap: 10px;
+
+                    button {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        gap: 8px;
+                        padding: 12px 20px;
+                        font-size: 0.9rem;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            transform: translateY(-2px);
+                            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+                        }
+                    }
                 }
             }
 
@@ -64,13 +88,40 @@
                 p {
                     display: flex;
                     align-items: center;
-                    margin-bottom: 15px;
+                    margin-bottom: 12px;
                     color: $text-light;
 
                     i {
                         color: $primary-red;
-                        margin-right: 15px;
-                        width: 20px;
+                        margin-right: 12px;
+                        width: 18px;
+                        font-size: 1rem;
+                    }
+                }
+
+                .social-links {
+                    margin-top: 15px;
+
+                    .whatsapp-link {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        background: #25D366;
+                        color: white;
+                        padding: 10px 15px;
+                        border-radius: 8px;
+                        text-decoration: none;
+                        font-size: 0.9rem;
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            background: #128C7E;
+                            transform: translateY(-2px);
+                        }
+
+                        i {
+                            font-size: 1.1rem;
+                        }
                     }
                 }
             }
@@ -79,46 +130,162 @@
                 .horario-item {
                     display: flex;
                     flex-direction: column;
-                    margin-bottom: 15px;
+                    margin-bottom: 12px;
                     padding: 15px;
                     background: $light-gray;
                     border-radius: 10px;
+                    border-left: 4px solid $primary-red;
 
                     strong {
                         color: $primary-gray;
-                        font-size: 1.1rem;
+                        font-size: 1rem;
+                        margin-bottom: 2px;
                     }
 
                     span {
                         color: $text-light;
-                        font-size: 0.9rem;
+                        font-size: 0.85rem;
                     }
                 }
             }
         }
     }
 
-    .mapa-placeholder {
+    .mapa-container {
         background: $white;
         border-radius: 15px;
-        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 400px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        height: fit-content;
 
-        .mapa-content {
-            text-align: center;
-            color: $text-light;
+        .mapa-header {
+            padding: 25px 30px 20px;
+            background: linear-gradient(135deg, $primary-red 0%, darken($primary-red, 10%) 100%);
+            color: white;
 
-            i {
-                font-size: 4rem;
-                color: $primary-red;
-                margin-bottom: 20px;
+            h3 {
+                font-size: 1.4rem;
+                margin-bottom: 5px;
+                font-weight: 600;
             }
 
             p {
-                max-width: 250px;
+                font-size: 0.9rem;
+                opacity: 0.9;
+                margin: 0;
+            }
+        }
+
+        .mapa-interativo {
+            height: 400px;
+            position: relative;
+
+            iframe {
+                width: 100%;
+                height: 100%;
+                border: none;
+                transition: filter 0.3s ease;
+
+                &:hover {
+                    filter: brightness(1.05);
+                }
+            }
+        }
+    }
+
+    .info-adicional {
+        margin-top: 40px;
+
+        .info-pratica {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+
+            .pratica-item {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                background: $white;
+                padding: 25px;
+                border-radius: 12px;
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+                transition: all 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+                }
+
+                i {
+                    font-size: 2rem;
+                    color: $primary-red;
+                    min-width: 40px;
+                }
+
+                div {
+                    h4 {
+                        font-size: 1.1rem;
+                        color: $primary-gray;
+                        margin-bottom: 5px;
+                        font-weight: 600;
+                    }
+
+                    p {
+                        color: $text-light;
+                        font-size: 0.9rem;
+                        margin: 0;
+                        line-height: 1.4;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: $tablet) {
+        padding: 60px 0;
+
+        .endereco-content {
+            margin-bottom: 40px;
+        }
+
+        .endereco-info {
+            .info-card {
+                padding: 25px;
+
+                h3 {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+
+        .mapa-container {
+            .mapa-header {
+                padding: 20px 25px 15px;
+
+                h3 {
+                    font-size: 1.3rem;
+                }
+            }
+
+            .mapa-interativo {
+                height: 300px;
+            }
+        }
+
+        .info-adicional {
+            margin-top: 30px;
+
+            .info-pratica {
+                grid-template-columns: 1fr;
+                gap: 20px;
+
+                .pratica-item {
+                    padding: 20px;
+
+                    i {
+                        font-size: 1.8rem;
+                    }
+                }
             }
         }
     }

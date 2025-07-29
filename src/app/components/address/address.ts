@@ -26,4 +26,9 @@ export class Address {
     const address = encodeURIComponent(`${this.address.street}, ${this.address.neighborhood}, ${this.address.city}`);
     window.open(`https://maps.google.com/maps?q=${address}`, '_blank');
   }
+
+  openDirections() {
+    const address = encodeURIComponent(`${this.address.street}, ${this.address.neighborhood}, ${this.address.city}`);
+    window.open(`https://maps.google.com/maps/dir//${address}`, '_blank');
+  }
 }
