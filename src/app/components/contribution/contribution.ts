@@ -18,8 +18,6 @@ interface ContributionOption {
   styleUrls: ['./contribution.scss']
 })
 export class Contribution {
-  isMobile = false;
-
   qrCodeUrl = '';
   pixKey = '05997686000150';
   churchName = 'PV';
@@ -92,10 +90,6 @@ export class Contribution {
     setInterval(() => {
       this.currentVerseIndex = (this.currentVerseIndex + 1) % this.inspirationalVerses.length;
     }, 10000);
-  }
-
-  ngOnInit() {
-    this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   }
 
   selectAmount(amount: number) {

@@ -75,15 +75,9 @@
 
         <!-- Botão para gerar PIX -->
         <div *ngIf="isValidAmount()" class="generate-pix-section slide-up">
-            <!-- Mobile: Copiar chave -->
-            <button *ngIf="isMobile" class="generate-pix-btn mobile-btn" (click)="copyPixToClipboard()"
-                aria-label="Copiar código PIX para pagamento">
-                <span class="btn-text">Copiar Código PIX</span>
-                <span class="btn-amount">{{ formatCurrency(selectedAmount || customAmount) }}</span>
-            </button>
-
+    
             <!-- Desktop: Mostrar QR Code -->
-            <button *ngIf="!isMobile" class="generate-pix-btn desktop-btn" (click)="generatePixQR()"
+            <button class="generate-pix-btn desktop-btn" (click)="generatePixQR()"
                 aria-label="Gerar QR Code PIX para pagamento">
                 <span class="btn-text">Gerar QR Code PIX</span>
                 <span class="btn-amount">{{ formatCurrency(selectedAmount || customAmount) }}</span>
