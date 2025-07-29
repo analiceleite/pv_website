@@ -1,5 +1,19 @@
 @import '../style/variables';
 
+@font-face {
+    font-family: 'CMG Sans Regular';
+    src: url('../assets/fonts/CMGSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'CMG BoldCAPS';
+    src: url('../assets/fonts/CMGSans-BoldCAPS.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -107,7 +121,7 @@ h1,
 h2,
 h3,
 h4 {
-    font-family: 'Comfortaa';
+    font-family: 'CMG BoldCAPS';
 }
 
 .contribution-header {

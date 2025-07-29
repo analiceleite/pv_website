@@ -2,24 +2,27 @@
 <section id="inicio" class="hero-carousel">
     <div class="carousel-container">
         <div class="slide active">
-
+            <!-- Seção da Imagem -->
             <div class="slide-image-section">
                 <img [src]="image" [alt]="title" class="slide-image">
                 <div class="image-overlay"></div>
             </div>
 
+            <!-- Seção da Comunidade -->
             <div class="community-section">
-                <div class="community-content">
-                    <h2 class="community-title">{{ title }}</h2>
+                <div class="community-content animate">
+                    <h1 class="community-title">{{ title }}</h1>
                     <p class="community-subtitle">{{ subtitle }}</p>
-                    <p class="verse-text">{{ verse }}</p>
+                    <blockquote class="verse-text">{{ verse }}</blockquote>
 
                     <div class="cta-buttons">
-                        <a href="#agenda" class="btn btn-primary">
+                        <a href="#agenda" class="btn btn-primary" role="button"
+                            aria-label="Acessar informações sobre cultos">
                             <span class="btn-text">Cultos</span>
                         </a>
 
-                        <a href="#endereco" class="btn btn-secondary">
+                        <a href="#endereco" class="btn btn-secondary" role="button"
+                            aria-label="Encontrar grupos familiares">
                             <span class="btn-text">Grupos Familiares</span>
                         </a>
                     </div>
