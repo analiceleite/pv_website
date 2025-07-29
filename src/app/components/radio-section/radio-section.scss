@@ -210,24 +210,6 @@
         }
     }
 
-    .live-indicator {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: $primary-red;
-        color: $white;
-        padding: 6px 12px;
-        border-radius: 15px;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        animation: blink 1.5s infinite;
-
-        .youtube-card & {
-            background: $primary-red;
-        }
-    }
-
     .stats {
         display: flex;
         justify-content: space-around;
