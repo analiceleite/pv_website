@@ -8,11 +8,9 @@
                 <img [src]="image" [alt]="title" class="slide-image desktop-only">
 
                 <!-- Vídeo para Mobile -->
-                <video class="slide-video mobile-only" autoplay [muted]="true" loop playsinline [poster]="image" [preload]="'auto'">
-                    <source [attr.src]="videoSrc" type="video/mp4">
-                    <source [attr.src]="videoSrcWebm" type="video/webm">
-                    <!-- Fallback para navegadores sem suporte a vídeo -->
-                    <img [src]="image" [alt]="title" class="fallback-image">
+                <video #heroVideo class="slide-video mobile-only" [muted]="true" [loop]="true" playsinline
+                    [poster]="image" [attr.autoplay]="true">
+                    <source [attr.src]="videoSrc" type="video/mp4" />
                 </video>
 
                 <div class="image-overlay"></div>

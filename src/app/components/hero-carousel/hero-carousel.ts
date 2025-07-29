@@ -11,6 +11,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 })
 export class HeroCarousel implements OnInit {
   @ViewChild('heroVideo', { static: false }) heroVideo!: ElementRef<HTMLVideoElement>;
+  @ViewChild('heroVideo') heroVideoRef!: ElementRef<HTMLVideoElement>;
 
   image = 'assets/background_shirlei.jpg';
   title = 'Faça Parte da Nossa Família';
@@ -19,7 +20,7 @@ export class HeroCarousel implements OnInit {
 
   videoSrc = 'assets/video_home_adoracao_2.mp4';
   videoSrcWebm = 'assets/video_home_adoracao_2.webm';
-  
+
   private isMobile = false;
   private resizeObserver?: ResizeObserver;
 
@@ -31,6 +32,14 @@ export class HeroCarousel implements OnInit {
   ngAfterViewInit(): void {
     if (this.isMobile && this.heroVideo) {
       this.setupVideoOptimizations();
+    }
+
+    const video = this.heroVideoRef?.nativeElement;
+    if (video) {
+      video.muted = true;
+      video.play().catch(err => {
+        console.warn('Autoplay bloqueado:', err);
+      });
     }
   }
 
