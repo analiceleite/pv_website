@@ -8,7 +8,8 @@
                 <img [src]="image" [alt]="title" class="slide-image desktop-only">
 
                 <!-- Vídeo para Mobile -->
-                <video class="slide-video mobile-only" autoplay muted [muted]="true" loop playsinline [poster]="image">
+                <video class="slide-video mobile-only" [autoplay]="true" [muted]="true" [loop]="true" playsinline
+                    [poster]="image">
                     <source [src]="videoSrc" type="video/mp4">
                     <source [src]="videoSrcWebm" type="video/webm">
                     <!-- Fallback para navegadores sem suporte a vídeo -->
