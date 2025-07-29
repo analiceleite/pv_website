@@ -8,9 +8,9 @@
                 <img [src]="image" [alt]="title" class="slide-image desktop-only">
 
                 <!-- Vídeo para Mobile -->
-                <video class="slide-video mobile-only" autoplay [muted]="true" loop playsinline [poster]="image">
-                    <source [src]="videoSrc" type="video/mp4">
-                    <source [src]="videoSrcWebm" type="video/webm">
+                <video class="slide-video mobile-only" autoplay [muted]="true" loop playsinline [poster]="image" [preload]="'auto'">
+                    <source [attr.src]="videoSrc" type="video/mp4">
+                    <source [attr.src]="videoSrcWebm" type="video/webm">
                     <!-- Fallback para navegadores sem suporte a vídeo -->
                     <img [src]="image" [alt]="title" class="fallback-image">
                 </video>
