@@ -8,8 +8,7 @@
                 <img [src]="image" [alt]="title" class="slide-image desktop-only">
 
                 <!-- Vídeo para Mobile -->
-                <video class="slide-video mobile-only" [autoplay]="true" [muted]="true" [loop]="true" playsinline
-                    [poster]="image">
+                <video class="slide-video mobile-only" autoplay [muted]="true" loop playsinline [poster]="image">
                     <source [src]="videoSrc" type="video/mp4">
                     <source [src]="videoSrcWebm" type="video/webm">
                     <!-- Fallback para navegadores sem suporte a vídeo -->
@@ -32,7 +31,7 @@
                             <span class="btn-text">Cultos</span>
                         </a>
 
-                        <a href="#endereco" class="btn btn-secondary" role="button"
+                        <a href="#grupos" class="btn btn-secondary" role="button"
                             aria-label="Encontrar grupos familiares">
                             <span class="btn-text">Grupos Familiares</span>
                         </a>
