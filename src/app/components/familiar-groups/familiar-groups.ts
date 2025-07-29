@@ -13,11 +13,14 @@ import { FormsModule } from '@angular/forms';
 export class FamiliarGroups {
   searchTerm: string = '';
 
+  current_page: number = 1;
+  items_per_page: number = 4;
+
   groups: FamiliarGroup[] = [
     {
       name: 'GF Déboras',
       address: 'Bairro Itaum',
-      hour: 'Quartas-feiras',
+      hour: 'Quartas-feiras às 20h00',
       focus: 'Mulheres',
       lider: 'Beatriz e Juliana',
       phone: '5547988755393'
@@ -25,7 +28,7 @@ export class FamiliarGroups {
     {
       name: 'GF Renascer',
       address: 'Bairro Itinga',
-      hour: 'Terças-feiras',
+      hour: 'Terças-feiras às 19h30',
       focus: 'Homens',
       lider: 'Pr Cristiano e DC Roberto',
       phone: '5547984959569'
@@ -33,7 +36,7 @@ export class FamiliarGroups {
     {
       name: 'GF Mulheres Invictas',
       address: 'Bairro Bucarein',
-      hour: 'Quintas-feiras',
+      hour: 'Quintas-feiras às 20h00',
       focus: 'Mulheres',
       lider: 'Andressa e Luciana',
       phone: '5547988856678'
@@ -41,15 +44,15 @@ export class FamiliarGroups {
     {
       name: 'GF Lançando as Redes',
       address: 'Bairro Fátima',
-      hour: 'Quartas-feiras às 19h00',
+      hour: 'Quartas-feiras às 19h30',
       focus: 'Misto',
-      lider: 'Manuel e Sandro',
-      phone: '5547989127887'
+      lider: 'Bruna',
+      phone: '5547991520857'
     },
     {
       name: 'GF Restaurados',
       address: 'Bairro Fátima',
-      hour: 'Quartas-feiras',
+      hour: 'Quartas-feiras às 19h30',
       focus: 'Misto',
       lider: 'Pr Airson, Rodrigo e Sabrina',
       phone: '5547999571858'
@@ -65,7 +68,7 @@ export class FamiliarGroups {
     {
       name: 'GF Transformar',
       address: 'Bairro Fátima',
-      hour: 'Sextas-feiras',
+      hour: 'Sextas-feiras às 20h00',
       focus: 'Meninas',
       lider: 'Gabriela, Brendha e Rebeca',
       phone: '5547992673547'
@@ -75,7 +78,7 @@ export class FamiliarGroups {
       address: 'Bairro Fátima',
       hour: 'Sábados',
       focus: 'Misto',
-      lider: 'Alex e Gisele',
+      lider: 'Alex e Gisele às 19h00',
       phone: '5547991666124'
     },
     {
@@ -97,7 +100,7 @@ export class FamiliarGroups {
     {
       name: 'GF Valentes de Davi',
       address: 'Bairro Fátima',
-      hour: 'Quartas-feiras',
+      hour: 'Quartas-feiras às 19h00',
       focus: 'Homens',
       lider: 'Tel e Leandro',
       phone: '5547997300742'
@@ -105,7 +108,7 @@ export class FamiliarGroups {
     {
       name: 'GF Floresça',
       address: 'Bairro Ulisses Guimarães',
-      hour: 'Terças-feiras',
+      hour: 'Terças-feiras às 20h00',
       focus: 'Mulheres',
       lider: 'Jossi e Giseli',
       phone: '5547984389047'
@@ -121,12 +124,22 @@ export class FamiliarGroups {
     {
       name: 'GF Dorcas',
       address: 'Bairro Floresta',
-      hour: 'Quintas-feiras',
+      hour: 'Quintas-feiras às 19h30',
       focus: 'Mulheres',
       lider: 'Miss Luciana e Arlete',
       phone: '5547999954554'
     }
   ]
+
+  get paginatedGroups(): FamiliarGroup[] {
+    const filtered = this.filteredGroups();
+    const start = (this.current_page - 1) * this.items_per_page;
+    return filtered.slice(start, start + this.items_per_page);
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.filteredGroups().length / this.items_per_page);
+  }
 
   getFocusClass(focus: string) {
     switch (focus) {
@@ -140,6 +153,8 @@ export class FamiliarGroups {
   filteredGroups(): FamiliarGroup[] {
     if (!this.searchTerm.trim()) return this.groups;
 
+    this.current_page = 1;
+
     const term = this.searchTerm.toLowerCase();
     return this.groups.filter(grupo =>
       grupo.name.toLowerCase().includes(term) ||
@@ -149,4 +164,5 @@ export class FamiliarGroups {
       grupo.lider.toLowerCase().includes(term)
     );
   }
+
 }

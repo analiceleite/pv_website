@@ -1,0 +1,99 @@
+<section id="agenda" class="agenda-semanal">
+    <div class="container">
+        <div class="section-header">
+            <h2>Agenda da Igreja</h2>
+            <p>Participe dos nossos encontros e atividades</p>
+        </div>
+
+        <!-- Navegação por abas -->
+        <div class="tabs-navigation">
+            <button class="tab-button" [class.active]="activeTab === 'horarios'" (click)="setActiveTab('horarios')">
+                Horários Fixos
+            </button>
+            <button class="tab-button" [class.active]="activeTab === 'agenda'" (click)="setActiveTab('agenda')">
+                Agenda 2025
+            </button>
+        </div>
+
+        <div class="agenda-content">
+            <!-- Horários Fixos dos Cultos -->
+            <div class="horarios-cultos" *ngIf="activeTab === 'horarios'">
+                <h3>Horários Semanais</h3>
+
+                <div class="culto-item" *ngFor="let horario of horariosFixos">
+                    <div class="culto-dia">
+                        <span class="dia-semana">{{ horario.dia }}</span>
+                        <span class="horario">{{ horario.horario }}</span>
+                    </div>
+                    <div class="culto-info">
+                        <h4>{{ horario.titulo }}</h4>
+                        <p>{{ horario.descricao }}</p>
+                    </div>
+                </div>
+
+                <!-- Indicador de transmissão ao vivo -->
+                <div class="live-indicator" *ngIf="isLiveNow">
+                    <div class="live-badge">
+                        <span class="live-dot"></span>
+                        AO VIVO AGORA
+                    </div>
+                    <button class="watch-live-btn" (click)="watchLive()">
+                        Assistir Transmissão
+                    </button>
+                </div>
+            </div>
+
+            <!-- Agenda Anual -->
+            <div class="agenda-anual" *ngIf="activeTab === 'agenda'">
+                <h3>Calendário de Eventos 2025</h3>
+
+                <!-- Filtros por tipo de evento -->
+                <div class="event-filters">
+                    <button class="filter-btn" [class.active]="selectedEventType === 'todos'"
+                        (click)="setEventFilter('todos')">
+                        Todos
+                    </button>
+                    <button class="filter-btn event-odre-novo" [class.active]="selectedEventType === 'odre-novo'"
+                        (click)="setEventFilter('odre-novo')">
+                        Odre Novo
+                    </button>
+                    <button class="filter-btn event-evangelismo" [class.active]="selectedEventType === 'evangelismo'"
+                        (click)="setEventFilter('evangelismo')">
+                        Evangelismo
+                    </button>
+                    <button class="filter-btn event-valorosas" [class.active]="selectedEventType === 'valorosas'"
+                        (click)="setEventFilter('valorosas')">
+                        Valorosas
+                    </button>
+                    <button class="filter-btn event-culto-mulheres"
+                        [class.active]="selectedEventType === 'culto-mulheres'"
+                        (click)="setEventFilter('culto-mulheres')">
+                        Mulheres
+                    </button>
+                    <button class="filter-btn event-especial" [class.active]="selectedEventType === 'especial'"
+                        (click)="setEventFilter('especial')">
+                        Especiais
+                    </button>
+                </div>
+
+                <div class="months-container">
+                    <div class="month-section" *ngFor="let month of [1,2,3,4,5,6,7,8,9,10,11,12]">
+                        <ng-container *ngIf="getAgendaByMonth()[month]">
+                            <h4 class="month-title">{{ getMonthName(month) }}</h4>
+                            <div class="events-list">
+                                <div class="event-item" *ngFor="let event of getAgendaByMonth()[month]"
+                                    [ngClass]="getEventTypeClass(event.type)">
+                                    <div class="event-date">{{ event.date }}</div>
+                                    <div class="event-details">
+                                        <h5>{{ event.event }}</h5>
+                                        <p *ngIf="event.description">{{ event.description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

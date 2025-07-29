@@ -1,0 +1,1133 @@
+@import '../../style/variables';
+
+.wrapper {
+    background: linear-gradient(135deg, $light-gray, $white);
+
+    .contribution-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: $spacing-lg;
+        font-family: $font-primary;
+        min-height: 100vh;
+        color: $text-primary;
+
+        .section-header {
+            margin-top: 6rem;
+        }
+
+        // Versículo inspirador com design moderno
+        .verse-banner {
+            background: $white;
+            border-radius: $radius-xxl;
+            padding: $spacing-xxxl;
+            margin-bottom: $spacing-xxxl;
+            text-align: center;
+            box-shadow: $shadow-xl;
+            border: 1px solid $border-gray;
+            position: relative;
+            overflow: hidden;
+            @include glass-effect(0.95);
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 5px;
+                background: $gradient-primary;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                right: -50%;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(circle, rgba($accent-sky, 0.1) 0%, transparent 70%);
+                pointer-events: none;
+            }
+
+            .verse-content {
+                position: relative;
+                z-index: 2;
+
+                .verse-icon {
+                    font-size: 2.5rem;
+                    margin-bottom: $spacing-md;
+                    color: $accent-sky;
+                    filter: drop-shadow(0 2px 4px rgba($accent-sky, 0.3));
+                    animation: float 3s ease-in-out infinite;
+                }
+
+                .verse-text {
+                    font-size: $font-xl;
+                    font-style: italic;
+                    color: $text-primary;
+                    margin-bottom: $spacing-md;
+                    line-height: $leading-relaxed;
+                    font-weight: $font-medium;
+                    text-shadow: 0 1px 2px rgba($black, 0.1);
+                }
+
+                .verse-reference {
+                    color: $primary-red;
+                    font-weight: $font-semibold;
+                    font-size: $font-sm;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    position: relative;
+
+                    &::before,
+                    &::after {
+                        content: '✦';
+                        color: $accent-sky;
+                        margin: 0 $spacing-sm;
+                        font-size: $font-xs;
+                    }
+                }
+            }
+        }
+
+        // Navegação por abas moderna
+        .tabs-container {
+            display: flex;
+            background: $white;
+            border-radius: $radius-xl;
+            padding: 8px;
+            margin-bottom: $spacing-xxxl;
+            box-shadow: $shadow-lg;
+            border: 1px solid $border-gray;
+            position: relative;
+            overflow: hidden;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(45deg, transparent 30%, rgba($accent-sky, 0.05) 50%, transparent 70%);
+                pointer-events: none;
+            }
+
+            .tab {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: $spacing-sm;
+                padding: $spacing-lg $spacing-xl;
+                border: none;
+                background: transparent;
+                border-radius: $radius-lg;
+                cursor: pointer;
+                font-weight: $font-semibold;
+                color: $text-secondary;
+                transition: $transition-all;
+                position: relative;
+                z-index: 2;
+
+                .tab-icon {
+                    font-size: $font-xl;
+                    transition: $transition-all;
+                }
+
+                .tab-text {
+                    font-size: $font-base;
+                    font-weight: $font-semibold;
+                }
+
+                &:hover {
+                    background: rgba($primary-red, 0.05);
+                    color: $primary-red;
+                    transform: translateY(-2px);
+
+                    .tab-icon {
+                        transform: scale(1.1);
+                    }
+                }
+
+                &.active {
+                    background: $gradient-primary;
+                    color: $white;
+                    box-shadow: $shadow-red;
+                    transform: translateY(-2px);
+
+                    .tab-icon {
+                        animation: pulse 2s infinite;
+                    }
+                }
+            }
+        }
+
+        // Conteúdo das abas com glassmorphism
+        .tab-content {
+            @include glass-effect(0.95);
+            border-radius: $radius-xxl;
+            padding: $spacing-xxxl;
+            margin-bottom: $spacing-xl;
+            box-shadow: $shadow-xxl;
+            border: 1px solid rgba($white, 0.3);
+
+            .section-header {
+                text-align: center;
+                margin-bottom: $spacing-xxxl;
+
+                h3 {
+                    color: $text-primary;
+                    margin-bottom: $spacing-sm;
+                    font-size: $font-3xl;
+                    font-weight: $font-bold;
+                    background: $gradient-gold;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -8px;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 60px;
+                        height: 3px;
+                        background: $gradient-primary;
+                        border-radius: $radius-sm;
+                    }
+                }
+
+                p {
+                    color: $text-secondary;
+                    margin: 0;
+                    font-size: $font-lg;
+                    font-weight: $font-regular;
+                }
+            }
+        }
+
+        // Grid de valores modernizado
+        .amount-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: $spacing-lg;
+            margin-bottom: $spacing-xl;
+
+            .amount-btn {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: $spacing-xl $spacing-lg;
+                border: 2px solid $border-gray;
+                background: $white;
+                border-radius: $radius-xl;
+                cursor: pointer;
+                font-weight: $font-semibold;
+                transition: $transition-all;
+                box-shadow: $shadow-sm;
+                min-height: 100px;
+                position: relative;
+                overflow: hidden;
+                @include hover-lift;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba($primary-red, 0.1), transparent);
+                    transition: left 0.5s ease;
+                }
+
+                .amount-value {
+                    font-size: $font-xl;
+                    color: $text-primary;
+                    font-weight: $font-bold;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                &:hover {
+                    border-color: $primary-red;
+                    background: rgba($primary-red, 0.05);
+                    box-shadow: $shadow-red;
+
+                    &::before {
+                        left: 100%;
+                    }
+                }
+
+                &.selected {
+                    border-color: $primary-red;
+                    background: $gradient-primary;
+                    color: $white;
+                    box-shadow: $shadow-red-hover;
+                    transform: translateY(-4px) scale(1.02);
+
+                    .amount-value {
+                        color: $white;
+                    }
+                }
+            }
+
+            .custom-btn {
+                background: $gradient-secondary;
+                color: $white;
+                border: none;
+                position: relative;
+                overflow: hidden;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    background: rgba($white, 0.2);
+                    border-radius: 50%;
+                    transform: translate(-50%, -50%);
+                    transition: width 0.3s ease, height 0.3s ease;
+                }
+
+                .custom-icon {
+                    font-size: $font-xl;
+                    margin-bottom: 4px;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                .custom-text {
+                    font-size: $font-sm;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                &:hover {
+                    background: linear-gradient(135deg, $dark-gray 0%, $soft-black 100%);
+                    box-shadow: $shadow-lg;
+
+                    &::after {
+                        width: 200px;
+                        height: 200px;
+                    }
+                }
+
+                &.selected {
+                    background: $gradient-primary;
+                    box-shadow: $shadow-red-hover;
+                }
+            }
+        }
+
+        // Input customizado com design moderno
+        .custom-input-container {
+            margin-top: $spacing-xl;
+            padding: $spacing-xl;
+            background: rgba($white, 0.8);
+            border-radius: $radius-xl;
+            border: 1px solid rgba($primary-red, 0.1);
+            animation: slideDown 0.4s ease;
+
+            .input-label {
+                display: flex;
+                align-items: center;
+                gap: $spacing-sm;
+                margin-bottom: $spacing-md;
+                font-weight: $font-semibold;
+                color: $text-primary;
+                font-size: $font-base;
+
+                .label-icon {
+                    font-size: $font-lg;
+                    color: $primary-red;
+                }
+            }
+
+            .input-group {
+                display: flex;
+                align-items: center;
+                background: $white;
+                border-radius: $radius-lg;
+                border: 2px solid $border-gray;
+                overflow: hidden;
+                transition: $transition-all;
+                box-shadow: $shadow-sm;
+
+                &:focus-within {
+                    border-color: $primary-red;
+                    box-shadow: 0 0 0 4px rgba($primary-red, 0.1);
+                    transform: translateY(-2px);
+                }
+
+                .currency-prefix {
+                    padding: $spacing-lg $spacing-xl;
+                    background: linear-gradient(135deg, $light-gray, $white);
+                    color: $primary-red;
+                    font-weight: $font-bold;
+                    border-right: 1px solid $border-gray;
+                    font-size: $font-lg;
+                }
+
+                .custom-amount-input {
+                    flex: 1;
+                    padding: $spacing-lg $spacing-xl;
+                    border: none;
+                    outline: none;
+                    font-size: $font-lg;
+                    font-weight: $font-semibold;
+                    color: $text-primary;
+
+                    &::placeholder {
+                        color: $text-light;
+                    }
+                }
+            }
+
+            .input-help {
+                display: block;
+                margin-top: $spacing-sm;
+                color: $text-secondary;
+                font-size: $font-sm;
+                font-style: italic;
+            }
+        }
+
+        // Cards de contribuição modernos
+        .contribution-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: $spacing-xl;
+            margin-bottom: $spacing-xxxl;
+
+            .contribution-card {
+                background: $white;
+                border-radius: $radius-xl;
+                padding: $spacing-xl;
+                box-shadow: $shadow-lg;
+                border: 1px solid $border-gray;
+                transition: $transition-all;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+                @include hover-lift;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    height: 4px;
+                    background: $gradient-primary;
+                    transform: scaleX(0);
+                    transition: transform 0.3s ease;
+                }
+
+                &:hover {
+                    transform: translateY(-8px);
+                    box-shadow: $shadow-xxl;
+                    border-color: rgba($primary-red, 0.3);
+
+                    &::before {
+                        transform: scaleX(1);
+                    }
+                }
+
+                &:focus {
+                    outline: 2px solid $primary-red;
+                    outline-offset: 4px;
+                }
+
+                .card-header {
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: $spacing-lg;
+
+                    .card-icon {
+                        font-size: 3rem;
+                        margin-right: $spacing-lg;
+                        filter: drop-shadow(0 2px 4px rgba($black, 0.1));
+                    }
+
+                    h4 {
+                        color: $text-primary;
+                        margin: 0;
+                        font-size: $font-xl;
+                        font-weight: $font-bold;
+                    }
+                }
+
+                .description {
+                    color: $text-secondary;
+                    margin-bottom: $spacing-lg;
+                    line-height: $leading-relaxed;
+                    font-size: $font-base;
+                }
+
+                .card-verse {
+                    background: rgba($primary-red, 0.05);
+                    padding: $spacing-lg;
+                    border-radius: $radius-lg;
+                    border-left: 4px solid $primary-red;
+                    position: relative;
+
+                    &::before {
+                        content: '"';
+                        position: absolute;
+                        top: -5px;
+                        left: 10px;
+                        font-size: 2rem;
+                        color: $primary-red;
+                        opacity: 0.3;
+                    }
+
+                    em {
+                        color: $text-primary;
+                        font-size: $font-sm;
+                        display: block;
+                        margin-bottom: $spacing-sm;
+                        line-height: $leading-normal;
+                        font-weight: $font-medium;
+                    }
+
+                    small {
+                        color: $primary-red;
+                        font-weight: $font-semibold;
+                        font-size: $font-xs;
+                        text-transform: uppercase;
+                        letter-spacing: 0.5px;
+                    }
+                }
+            }
+        }
+
+        .amount-section {
+            .amount-title {
+                display: flex;
+                align-items: center;
+                gap: $spacing-sm;
+                color: $text-primary;
+                margin-bottom: $spacing-lg;
+                font-size: $font-xl;
+                font-weight: $font-bold;
+
+                .title-icon {
+                    font-size: $font-2xl;
+                    color: $accent-sky;
+                }
+            }
+        }
+
+        // Botão PIX moderno
+        .generate-pix-section {
+            text-align: center;
+
+            .generate-pix-btn {
+                display: inline-flex;
+                flex-direction: column;
+                align-items: center;
+                gap: $spacing-sm;
+                background: $gradient-primary;
+                color: $white;
+                border: none;
+                padding: $spacing-md $spacing-xl;
+                border-radius: $radius-xxl;
+                font-weight: $font-bold;
+                cursor: pointer;
+                transition: $transition-all;
+                box-shadow: $shadow-red;
+                min-width: 320px;
+                position: relative;
+                overflow: hidden;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: -100%;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
+                    transition: left 0.6s ease;
+                }
+
+                .btn-icon {
+                    font-size: 2.5rem;
+                    animation: pulse 2s infinite;
+                }
+
+                .btn-text {
+                    font-size: $font-xl;
+                    font-weight: $font-bold;
+                }
+
+                .btn-amount {
+                    font-size: $font-2xl;
+                    font-weight: $font-extrabold;
+                    text-shadow: 0 2px 4px rgba($black, 0.2);
+                }
+
+                &:hover {
+                    transform: translateY(-4px) scale(1.02);
+                    box-shadow: $shadow-red-hover;
+                    background: linear-gradient(135deg, $light-red 0%, $secondary-red 100%);
+
+                    &::before {
+                        left: 100%;
+                    }
+                }
+
+                &:disabled {
+                    background: $medium-gray;
+                    cursor: not-allowed;
+                    box-shadow: $shadow-sm;
+                    transform: none;
+                }
+            }
+
+            .copy-success {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: $spacing-sm;
+                background: rgba($success-green, 0.1);
+                color: $success-green;
+                padding: $spacing-lg $spacing-xl;
+                border-radius: $radius-xl;
+                border: 2px solid $success-green;
+                font-weight: $font-semibold;
+                margin-top: $spacing-lg;
+                animation: slideUp 0.3s ease;
+
+                .success-icon {
+                    font-size: $font-xl;
+                    animation: bounce 0.6s ease;
+                }
+            }
+        }
+
+        // Modal QR Code premium
+        .qr-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba($black, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: $z-modal;
+            padding: $spacing-lg;
+
+            .qr-modal-content {
+                background: $white;
+                border-radius: $radius-xxl;
+                max-width: 550px;
+                width: 100%;
+                max-height: 90vh;
+                overflow-y: auto;
+                box-shadow: $shadow-xxl;
+                animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+                border: 1px solid rgba($white, 0.2);
+
+                .qr-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: $spacing-sm $spacing-xl;
+                    border-bottom: 1px solid $border-gray;
+                    background: $gradient-primary;
+                    color: $white;
+                    border-radius: $radius-xxl $radius-xxl 0 0;
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        left: 0;
+                        right: 0;
+                        height: 1px;
+                        background: linear-gradient(90deg, transparent, rgba($white, 0.3), transparent);
+                    }
+
+                    h3 {
+                        display: flex;
+                        align-items: center;
+                        gap: $spacing-md;
+                        margin: 0;
+                        font-size: $font-2xl;
+                        font-weight: $font-bold;
+
+                        .header-icon {
+                            font-size: $font-2xl;
+                            filter: drop-shadow(0 2px 4px rgba($black, 0.2));
+                        }
+                    }
+
+                    .close-btn {
+                        background: none;
+                        border: none;
+                        color: $white;
+                        font-size: 2rem;
+                        cursor: pointer;
+                        padding: $spacing-sm;
+                        width: 48px;
+                        height: 48px;
+                        border-radius: $radius-round;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: $transition-all;
+
+                        &:hover {
+                            background: rgba($white, 0.2);
+                            transform: rotate(90deg) scale(1.1);
+                        }
+                    }
+                }
+
+                .qr-body {
+                    padding: $spacing-xxxl;
+
+                    .qr-code-container {
+                        text-align: center;
+                        margin-bottom: $spacing-xxxl;
+
+                        .qr-wrapper {
+                            display: inline-block;
+                            padding: $spacing-xl;
+                            background: $white;
+                            border-radius: $radius-xl;
+                            box-shadow: $shadow-lg;
+                            border: 1px solid $border-gray;
+                            position: relative;
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                inset: -2px;
+                                background: $gradient-primary;
+                                border-radius: $radius-xl;
+                                z-index: -1;
+                                opacity: 0.1;
+                            }
+
+                            .qr-image {
+                                display: block;
+                                border-radius: $radius-lg;
+                                filter: drop-shadow(0 4px 8px rgba($black, 0.1));
+                            }
+                        }
+                    }
+
+                    .qr-info {
+                        .amount-display {
+                            text-align: center;
+                            margin-bottom: $spacing-xl;
+                            background: linear-gradient(135deg, $success-green 0%, darken($success-green, 10%) 100%);
+                            color: $white;
+                            border-radius: $radius-xl;
+                            position: relative;
+                            overflow: hidden;
+
+                            &::before {
+                                content: '';
+                                position: absolute;
+                                top: 0;
+                                left: -100%;
+                                width: 100%;
+                                height: 100%;
+                                background: linear-gradient(90deg, transparent, rgba($white, 0.2), transparent);
+                                animation: shimmer 2s infinite;
+                            }
+
+                            .amount-label {
+                                display: block;
+                                font-size: $font-sm;
+                                opacity: 0.9;
+                                margin-bottom: 4px;
+                                font-weight: $font-medium;
+                            }
+
+                            .amount-value {
+                                display: block;
+                                font-size: $font-4xl;
+                                font-weight: $font-extrabold;
+                                text-shadow: 0 2px 4px rgba($black, 0.2);
+                            }
+                        }
+
+                        .instructions {
+                            margin-bottom: $spacing-xl;
+
+                            .instructions-title {
+                                display: flex;
+                                align-items: center;
+                                gap: $spacing-sm;
+                                color: $text-primary;
+                                font-weight: $font-bold;
+                                margin-bottom: $spacing-lg;
+                                font-size: $font-lg;
+
+                                .instructions-icon {
+                                    font-size: $font-xl;
+                                    color: $primary-red;
+                                }
+                            }
+
+                            .instructions-list {
+                                color: $text-secondary;
+                                padding-left: $spacing-lg;
+                                margin: 0;
+
+                                li {
+                                    margin-bottom: $spacing-sm;
+                                    line-height: $leading-relaxed;
+                                    font-weight: $font-medium;
+                                    position: relative;
+
+                                    &::marker {
+                                        color: $primary-red;
+                                        font-weight: $font-bold;
+                                    }
+                                }
+                            }
+                        }
+
+                        .pix-code-section {
+                            text-align: center;
+
+                            .copy-btn-main {
+                                display: inline-flex;
+                                align-items: center;
+                                gap: $spacing-sm;
+                                background: $gradient-primary;
+                                color: $white;
+                                border: none;
+                                border-radius: $radius-xl;
+                                padding: $spacing-lg $spacing-xxxl;
+                                font-size: $font-lg;
+                                font-weight: $font-semibold;
+                                cursor: pointer;
+                                transition: $transition-all;
+                                box-shadow: $shadow-red;
+                                position: relative;
+                                overflow: hidden;
+
+                                &::before {
+                                    content: '';
+                                    position: absolute;
+                                    top: 0;
+                                    left: -100%;
+                                    width: 100%;
+                                    height: 100%;
+                                    background: linear-gradient(90deg, transparent, rgba($white, 0.3), transparent);
+                                    transition: left 0.5s ease;
+                                }
+
+                                .copy-icon {
+                                    font-size: $font-xl;
+                                }
+
+                                &:hover {
+                                    background: linear-gradient(135deg, $light-red 0%, $secondary-red 100%);
+                                    transform: translateY(-2px);
+                                    box-shadow: $shadow-red-hover;
+
+                                    &::before {
+                                        left: 100%;
+                                    }
+                                }
+                            }
+
+                            .copy-success {
+                                display: inline-flex;
+                                align-items: center;
+                                gap: $spacing-sm;
+                                background: rgba($success-green, 0.1);
+                                color: $success-green;
+                                padding: $spacing-md $spacing-lg;
+                                border-radius: $radius-lg;
+                                border: 2px solid $success-green;
+                                font-weight: $font-semibold;
+                                margin-top: $spacing-lg;
+                                animation: fadeIn 0.3s ease;
+
+                                .success-icon {
+                                    font-size: $font-lg;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Animações modernas
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+                max-height: 0;
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                max-height: 300px;
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            53%,
+            80%,
+            100% {
+                transform: translate3d(0, 0, 0);
+            }
+
+            40%,
+            43% {
+                transform: translate3d(0, -10px, 0);
+            }
+
+            70% {
+                transform: translate3d(0, -5px, 0);
+            }
+
+            90% {
+                transform: translate3d(0, -2px, 0);
+            }
+        }
+
+        // Classes de animação
+        .fade-in {
+            animation: fadeIn 0.6s ease;
+        }
+
+        .slide-down {
+            animation: slideDown 0.5s ease;
+        }
+
+        .slide-up {
+            animation: slideUp 0.5s ease;
+        }
+
+        // Responsividade moderna
+        @media (max-width: $mobile) {
+            padding: $spacing-md;
+
+            .verse-banner {
+                padding: $spacing-xl;
+                margin-bottom: $spacing-xl;
+
+                .verse-content .verse-text {
+                    font-size: $font-lg;
+                }
+            }
+
+            .tabs-container {
+                flex-direction: column;
+                gap: 6px;
+
+                .tab {
+                    justify-content: center;
+                    padding: $spacing-lg;
+
+                    .tab-text {
+                        font-size: $font-sm;
+                    }
+                }
+            }
+
+            .tab-content {
+                padding: $spacing-xl;
+
+                .section-header h3 {
+                    font-size: $font-2xl;
+                }
+            }
+
+            .amount-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: $spacing-md;
+
+                .amount-btn {
+                    padding: $spacing-lg $spacing-md;
+                    min-height: 80px;
+
+                    .amount-value {
+                        font-size: $font-base;
+                    }
+                }
+            }
+
+            .contribution-options {
+                grid-template-columns: 1fr;
+                gap: $spacing-lg;
+
+                .contribution-card {
+                    padding: $spacing-lg;
+                }
+            }
+
+            .generate-pix-btn {
+                padding: $spacing-lg $spacing-xl;
+                min-width: 280px;
+
+                .btn-text {
+                    font-size: $font-lg;
+                }
+
+                .btn-amount {
+                    font-size: $font-xl;
+                }
+            }
+
+            .qr-modal {
+                padding: $spacing-md;
+
+                .qr-modal-content {
+                    .qr-header {
+                        padding: $spacing-sm;
+
+                        h3 {
+                            font-size: $font-xl;
+                        }
+                    }
+
+                    .qr-body {
+                        padding: $spacing-xl;
+
+                        .qr-code-container .qr-wrapper {
+                            padding: $spacing-lg;
+                        }
+
+                        .amount-display {
+                            padding: $spacing-lg;
+
+                            .amount-value {
+                                font-size: $font-2xl;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 480px) {
+            .amount-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .generate-pix-btn {
+                padding: $spacing-lg $spacing-xl;
+                min-width: 240px;
+
+                .btn-text {
+                    font-size: $font-base;
+                }
+
+                .btn-amount {
+                    font-size: $font-lg;
+                }
+            }
+
+            .custom-input-container {
+                padding: $spacing-lg;
+
+                .input-group {
+                    .currency-prefix {
+                        padding: $spacing-md $spacing-lg;
+                    }
+
+                    .custom-amount-input {
+                        padding: $spacing-md $spacing-lg;
+                        font-size: $font-base;
+                    }
+                }
+            }
+        }
+    }
+}

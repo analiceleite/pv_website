@@ -13,8 +13,8 @@ export class Address {
     neighborhood: 'Fátima',
     city: 'Joinville',
     cep: '89229-101',
-    celphone: '(11) 99999-9999',
-    email: 'contato@palavradavida.com.br'
+    celphone: '(47) 99925-3311 - Pr Sandro Dias',
+    email: 'prsandropalavradavida@gmail.com'
   };
 
   schedule = [

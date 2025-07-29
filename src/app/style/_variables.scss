@@ -286,6 +286,5 @@ $whatsapp-green: #25d366;
 // Mixin para glassmorphism
 @mixin glass-effect($opacity: 0.1) {
   background: rgba($white, $opacity);
-  backdrop-filter: blur(10px);
   border: 1px solid rgba($white, 0.2);
 }

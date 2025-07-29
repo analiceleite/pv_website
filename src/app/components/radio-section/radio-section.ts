@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './radio-section.scss'
 })
 export class RadioSection {
-   youtubeStats = {
-    subscribers: '1.2K',
+  youtubeStats = {
+    subscribers: '1.4K',
     quality: 'HD'
   };
 
@@ -19,7 +19,6 @@ export class RadioSection {
 
   openYoutube(): void {
     console.log('Abrindo YouTube...');
-    // Implementar abertura do YouTube
-    // window.open('https://youtube.com/channel/sua-igreja', '_blank');
+    window.open('https://www.youtube.com/@comunidadepalavradavida1632', '_blank');
   }
 }

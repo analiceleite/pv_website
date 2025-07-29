@@ -10,7 +10,7 @@
         </div>
 
         <div class="grupos-grid">
-            <div class="grupo-card" *ngFor="let grupo of filteredGroups()">
+            <div class="grupo-card" *ngFor="let grupo of paginatedGroups">
                 <div class="grupo-header">
                     <h3>{{ grupo.name }}</h3>
                     <span class="foco-badge" [ngClass]="getFocusClass(grupo.focus)">
@@ -46,5 +46,18 @@
         <div class="no-results" *ngIf="filteredGroups().length === 0">
             Nenhum grupo encontrado com esse critério.
         </div>
+
+        <div class="paginacao" *ngIf="totalPages > 1">
+            <button (click)="current_page = current_page - 1" [disabled]="current_page === 1">
+                Anterior
+            </button>
+
+            <span>Página {{ current_page }} de {{ totalPages }}</span>
+
+            <button (click)="current_page = current_page + 1" [disabled]="current_page === totalPages">
+                Próxima
+            </button>
+        </div>
+
     </div>
 </section>
