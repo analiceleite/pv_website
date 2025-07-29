@@ -10,20 +10,23 @@
             <div class="footer-section">
                 <h4>Links Rápidos</h4>
                 <ul>
-                    <li><a href="#radio">Rádio</a></li>
-                    <li><a href="#live">Transmissão</a></li>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#midia">Transmissões</a></li>
+                    <li><a href="#agenda">Agenda</a></li>
+                    <li><a href="#fotos">Fotos</a></li>
                     <li><a href="#grupos">Grupos Familiares</a></li>
-                    <li><a href="#fotos">Galeria</a></li>
+                    <li><a href="#ofertas">Ofertas</a></li>
+                    <li><a href="#endereco">Contato</a></li>
                 </ul>
             </div>
 
             <div class="footer-section">
                 <h4>Redes Sociais</h4>
                 <div class="social-links">
-                    <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
-                    <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a *ngFor="let link of socialLinks" (click)="openSocialLink(link.url)"
+                        [attr.aria-label]="link.name">
+                        <i [class]="link.icon"></i>
+                    </a>
                 </div>
             </div>
         </div>

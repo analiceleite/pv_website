@@ -15,12 +15,4 @@ export class HeroCarousel {
   subtitle = 'Uma comunidade de fé, amor e propósito';
   verse = '"Porque onde estiverem dois ou três reunidos em meu nome, aí estou eu no meio deles." - Mateus 18:20'
 
-
-  onGruposFamiliares(): void {
-    console.log('Navegando para Grupos Familiares');
-  }
-
-  onNosVisite(): void {
-    console.log('Navegando para Nos Visite');
-  }
 }

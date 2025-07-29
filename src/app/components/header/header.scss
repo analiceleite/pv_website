@@ -32,6 +32,14 @@
         }
     }
 
+    .nav-menu a.active {
+        color: #fff;
+        background: #c0392b; 
+        border-radius: 4px;
+        padding: 6px 12px;
+        transition: background 0.2s, color 0.2s;
+    }
+
     .nav-menu {
         ul {
             display: flex;
