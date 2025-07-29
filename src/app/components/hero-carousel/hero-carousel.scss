@@ -168,7 +168,7 @@
 @media (max-width: $mobile) {
     .hero-carousel {
         .slide {
-            flex-direction: column;
+            flex-direction: column-reverse;
         }
 
         .slide-image-section {
@@ -179,7 +179,7 @@
         .community-section {
             width: 100%;
             height: 40%;
-            padding: 20px;
+            padding: 20px 0;
 
             &::before {
                 width: 100%;
