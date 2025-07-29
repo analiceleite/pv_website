@@ -90,79 +90,6 @@
             }
         }
 
-        // Navegação por abas moderna
-        .tabs-container {
-            display: flex;
-            background: $white;
-            border-radius: $radius-xl;
-            padding: 8px;
-            margin-bottom: $spacing-xxxl;
-            box-shadow: $shadow-lg;
-            border: 1px solid $border-gray;
-            position: relative;
-            overflow: hidden;
-
-            &::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(45deg, transparent 30%, rgba($accent-sky, 0.05) 50%, transparent 70%);
-                pointer-events: none;
-            }
-
-            .tab {
-                flex: 1;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: $spacing-sm;
-                padding: $spacing-lg $spacing-xl;
-                border: none;
-                background: transparent;
-                border-radius: $radius-lg;
-                cursor: pointer;
-                font-weight: $font-semibold;
-                color: $text-secondary;
-                transition: $transition-all;
-                position: relative;
-                z-index: 2;
-
-                .tab-icon {
-                    font-size: $font-xl;
-                    transition: $transition-all;
-                }
-
-                .tab-text {
-                    font-size: $font-base;
-                    font-weight: $font-semibold;
-                }
-
-                &:hover {
-                    background: rgba($primary-red, 0.05);
-                    color: $primary-red;
-                    transform: translateY(-2px);
-
-                    .tab-icon {
-                        transform: scale(1.1);
-                    }
-                }
-
-                &.active {
-                    background: $gradient-primary;
-                    color: $white;
-                    box-shadow: $shadow-red;
-                    transform: translateY(-2px);
-
-                    .tab-icon {
-                        animation: pulse 2s infinite;
-                    }
-                }
-            }
-        }
-
         // Conteúdo das abas com glassmorphism
         .tab-content {
             @include glass-effect(0.95);
@@ -212,7 +139,7 @@
         // Grid de valores modernizado
         .amount-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: $spacing-lg;
             margin-bottom: $spacing-xl;
 
@@ -409,7 +336,7 @@
             .contribution-card {
                 background: $white;
                 border-radius: $radius-xl;
-                padding: $spacing-xl;
+                padding: $spacing-sm;
                 box-shadow: $shadow-lg;
                 border: 1px solid $border-gray;
                 transition: $transition-all;
@@ -448,11 +375,11 @@
                 .card-header {
                     display: flex;
                     align-items: center;
-                    margin-bottom: $spacing-lg;
+                    margin-bottom: $spacing-sm;
 
                     .card-icon {
-                        font-size: 3rem;
-                        margin-right: $spacing-lg;
+                        font-size: 1.5rem;
+                        margin-right: $spacing-sm;
                         filter: drop-shadow(0 2px 4px rgba($black, 0.1));
                     }
 

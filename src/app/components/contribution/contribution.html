@@ -14,64 +14,12 @@
             </div>
         </div>
 
-        <!-- Navegação por abas -->
-        <div class="tabs-container">
-            <button class="tab" [class.active]="activeTab === 'ofertas'" (click)="setActiveTab('ofertas')"
-                aria-label="Ofertas Rápidas">
-                <span class="tab-icon">⚡</span>
-                <span class="tab-text">Ofertas Rápidas</span>
-            </button>
-            <button class="tab" [class.active]="activeTab === 'contribuicoes'" (click)="setActiveTab('contribuicoes')"
-                aria-label="Tipos de Contribuição">
-                <span class="tab-icon">❤️</span>
-                <span class="tab-text">Tipos de Contribuição</span>
-            </button>
-        </div>
-
-        <!-- Conteúdo das abas -->
+        <!-- Conteúdo -->
         <div class="tab-content">
-            <!-- Aba de Ofertas Rápidas -->
-            <div *ngIf="activeTab === 'ofertas'" class="ofertas-tab fade-in">
+            <div class="contribuicoes-tab fade-in">
                 <div class="contribution-header">
-                    <h2>💝 Oferta Rápida</h2>
-                    <p>Escolha um valor ou digite um valor personalizado</p>
-                </div>
-
-                <!-- Valores sugeridos -->
-                <div class="amount-grid">
-                    <button *ngFor="let amount of suggestedAmounts" class="amount-btn"
-                        [class.selected]="selectedAmount === amount" (click)="selectAmount(amount)"
-                        [attr.aria-label]="'Selecionar valor de ' + formatCurrency(amount)">
-                        <span class="amount-value">{{ formatCurrency(amount) }}</span>
-                    </button>
-                    <button class="amount-btn custom-btn" [class.selected]="showCustomInput"
-                        (click)="showCustomAmountInput()" aria-label="Inserir valor personalizado">
-                        <span class="custom-icon">✏️</span>
-                        <span class="custom-text">Outro valor</span>
-                    </button>
-                </div>
-
-                <!-- Input para valor customizado -->
-                <div *ngIf="showCustomInput" class="custom-input-container slide-down">
-                    <label for="customAmount" class="input-label">
-                        <span class="label-icon">💰</span>
-                        Digite o valor desejado
-                    </label>
-                    <div class="input-group">
-                        <span class="currency-prefix">R$</span>
-                        <input id="customAmount" type="number" min="0.01" step="0.01" [(ngModel)]="customAmount"
-                            (blur)="setCustomAmount()" placeholder="0,00" class="custom-amount-input"
-                            aria-describedby="amount-help">
-                    </div>
-                    <small id="amount-help" class="input-help">Valor mínimo: R$ 0,01</small>
-                </div>
-            </div>
-
-            <!-- Aba de Tipos de Contribuição -->
-            <div *ngIf="activeTab === 'contribuicoes'" class="contribuicoes-tab fade-in">
-                <div class="contribution-header">
-                    <h2>🙏 Tipos de Contribuição</h2>
-                    <p>Escolha como deseja contribuir com nossa comunidade</p>
+                    <h1>Para onde vai a minha contribuição?</h1>
+                    <p>Entenda de forma transparente como sua contribuição faz a diferença.</p>
                 </div>
 
                 <div class="contribution-options">
@@ -92,7 +40,6 @@
                 <!-- Valores sugeridos para contribuições -->
                 <div class="amount-section">
                     <h4 class="amount-title">
-                        <span class="title-icon">💎</span>
                         Escolha o valor da sua contribuição
                     </h4>
                     <div class="amount-grid">

@@ -24,7 +24,6 @@ export class Contribution {
   pixKey = '05997686000150';
   churchName = 'PV';
   city = 'JOINVILLE';
-  activeTab: 'ofertas' | 'contribuicoes' = 'ofertas';
   showQRCode = false;
   selectedAmount: number | null = null;
   customAmount: number | null = null;
@@ -99,13 +98,6 @@ export class Contribution {
     this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   }
 
-  setActiveTab(tab: 'ofertas' | 'contribuicoes') {
-    this.activeTab = tab;
-    this.showQRCode = false;
-    this.selectedAmount = null;
-    this.pixCode = '';
-  }
-
   selectAmount(amount: number) {
     this.selectedAmount = amount;
     this.customAmount = null;
@@ -135,6 +127,42 @@ export class Contribution {
     this.qrCodeUrl = `${baseUrl}?data=${encodeURIComponent(this.pixCode)}&size=250x250`;
 
     this.showQRCode = true;
+  }
+
+  // GERADOR PIX SIMPLIFICADO
+  private createPixCode(valor: number): string {
+    // Função auxiliar para formatar campos
+    const field = (id: string, value: string) => {
+      const size = value.length.toString().padStart(2, '0');
+      return `${id}${size}${value}`;
+    };
+
+    // Monta o código PIX
+    const merchantAccount = field('00', 'BR.GOV.BCB.PIX') + field('01', this.pixKey);
+    const valorStr = valor.toFixed(2);
+
+    let payload = '000201' + // Formato
+      field('26', merchantAccount) + // Conta merchant  
+      '52040000' + // Categoria
+      '5303986' + // Moeda (BRL)
+      field('54', valorStr) + // Valor
+      '5802BR' + // País
+      field('59', this.churchName) + // Nome
+      field('60', this.city) + // Cidade
+      field('62', field('05', '***')); // ID da transação
+
+    // Calcula CRC16
+    let crc = 0xFFFF;
+    const crcData = payload + '6304';
+    for (let i = 0; i < crcData.length; i++) {
+      crc ^= crcData.charCodeAt(i) << 8;
+      for (let j = 0; j < 8; j++) {
+        crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
+      }
+    }
+    crc &= 0xFFFF;
+
+    return payload + '6304' + crc.toString(16).toUpperCase().padStart(4, '0');
   }
 
   hidePixQR() {
@@ -184,41 +212,5 @@ export class Contribution {
       style: 'currency',
       currency: 'BRL'
     }).format(value);
-  }
-
-  // GERADOR PIX SIMPLIFICADO
-  private createPixCode(valor: number): string {
-    // Função auxiliar para formatar campos
-    const field = (id: string, value: string) => {
-      const size = value.length.toString().padStart(2, '0');
-      return `${id}${size}${value}`;
-    };
-
-    // Monta o código PIX
-    const merchantAccount = field('00', 'BR.GOV.BCB.PIX') + field('01', this.pixKey);
-    const valorStr = valor.toFixed(2);
-
-    let payload = '000201' + // Formato
-      field('26', merchantAccount) + // Conta merchant  
-      '52040000' + // Categoria
-      '5303986' + // Moeda (BRL)
-      field('54', valorStr) + // Valor
-      '5802BR' + // País
-      field('59', this.churchName) + // Nome
-      field('60', this.city) + // Cidade
-      field('62', field('05', '***')); // ID da transação
-
-    // Calcula CRC16
-    let crc = 0xFFFF;
-    const crcData = payload + '6304';
-    for (let i = 0; i < crcData.length; i++) {
-      crc ^= crcData.charCodeAt(i) << 8;
-      for (let j = 0; j < 8; j++) {
-        crc = (crc & 0x8000) ? (crc << 1) ^ 0x1021 : crc << 1;
-      }
-    }
-    crc &= 0xFFFF;
-
-    return payload + '6304' + crc.toString(16).toUpperCase().padStart(4, '0');
   }
 }

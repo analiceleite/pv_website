@@ -6,8 +6,8 @@
 
     .radio-content {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 25px;
         justify-items: center;
     }
 
@@ -17,7 +17,7 @@
         border-radius: 20px;
         text-align: center;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-        max-width: 400px;
+        // max-width: 400px;
         width: 100%;
         position: relative;
         overflow: hidden;
@@ -35,7 +35,7 @@
             left: 0;
             width: 100%;
             height: 4px;
-            background: linear-gradient(90deg,  $primary-red, $secondary-red);
+            background: linear-gradient(90deg, $primary-red, $secondary-red);
             transition: height 0.3s ease;
         }
 
@@ -62,7 +62,7 @@
     }
 
     .radio-card .media-icon {
-        color:  $primary-red;
+        color: $primary-red;
 
         i {
             animation: pulse 2s infinite;
@@ -76,6 +76,62 @@
             animation: bounce 2s infinite;
         }
     }
+
+    .facebook-card {
+        &::before {
+            background: linear-gradient(90deg, #1877f2, #0d55a1);
+        }
+
+        .media-icon {
+            color: #1877f2;
+
+            i {
+                animation: bounce 2s infinite;
+            }
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #1877f2, #0d55a1);
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+
+            &:hover {
+                box-shadow: 0 8px 25px rgba(24, 119, 242, 0.4);
+            }
+        }
+
+        .stat-number {
+            color: #1877f2;
+        }
+    }
+
+    .instagram-card {
+        &::before {
+            background: linear-gradient(90deg, #f58529, #dd2a7b, #8134af, #515bd4); // degrade do Instagram
+        }
+
+        .media-icon {
+            color: #dd2a7b;
+
+            i {
+                animation: bounce 2s infinite;
+            }
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f58529, #dd2a7b);
+            box-shadow: 0 4px 15px rgba(221, 42, 123, 0.3);
+
+            &:hover {
+                box-shadow: 0 8px 25px rgba(221, 42, 123, 0.4);
+            }
+        }
+
+        .stat-number {
+            color: #dd2a7b;
+        }
+    }
+
+
 
     .media-card h3 {
         font-size: 1.8rem;
@@ -113,12 +169,12 @@
     }
 
     .btn-primary {
-        background: linear-gradient(135deg,  $primary-red, $secondary-red);
+        background: linear-gradient(135deg, $primary-red, $secondary-red);
         color: $white;
-        box-shadow: 0 4px 15px rgba( $primary-red, 0.3);
+        box-shadow: 0 4px 15px rgba($primary-red, 0.3);
 
         &:hover {
-            box-shadow: 0 8px 25px rgba( $primary-red, 0.4);
+            box-shadow: 0 8px 25px rgba($primary-red, 0.4);
         }
     }
 
@@ -136,7 +192,7 @@
         position: absolute;
         top: 20px;
         right: 20px;
-        background:  $primary-red;
+        background: $primary-red;
         color: $white;
         padding: 5px 12px;
         border-radius: 15px;
@@ -163,7 +219,7 @@
             &-number {
                 font-size: 1.5rem;
                 font-weight: bold;
-                color:  $primary-red;
+                color: $primary-red;
                 display: block;
 
                 .youtube-card & {

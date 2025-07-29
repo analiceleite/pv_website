@@ -55,6 +55,54 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Card Facebook -->
+            <div class="media-card facebook-card">
+                <div class="media-icon">
+                    <i class="fab fa-facebook-messenger"></i>
+                </div>
+                <h3>Conecte-se Conosco</h3>
+                <p>Receba mensagens inspiradoras, transmissões ao vivo e eventos direto na sua timeline.</p>
+                <button class="btn btn-secondary" (click)="openFacebook()">
+                    <i class="fas fa-broadcast-tower"></i>
+                    Assistir no Facebook
+                </button>
+
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">{{ facebookStats.followers }}</span>
+                        <span class="stat-label">Seguidores</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">{{ facebookStats.quality }}</span>
+                        <span class="stat-label">Engajamento</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card do Instagram -->
+            <div class="media-card instagram-card">
+                <div class="media-icon">
+                    <i class="fas fa-camera-retro"></i>
+                </div>
+                <h3>Acompanhe Nossa Jornada</h3>
+                <p>Veja fotos dos cultos, bastidores e momentos especiais da nossa família em Cristo.</p>
+                <button class="btn btn-secondary" (click)="openInstagram()">
+                    <i class="fas fa-heart"></i>
+                    Seguir no Instagram
+                </button>
+
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">{{ instagramStats.followers }}</span>
+                        <span class="stat-label">Seguidores</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">{{ instagramStats.quality }}</span>
+                        <span class="stat-label">Interações</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
