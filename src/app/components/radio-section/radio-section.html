@@ -8,16 +8,22 @@
         <div class="radio-content">
             <!-- Card da Rádio -->
             <div class="media-card radio-card">
-                <div class="live-indicator">AO VIVO</div>
-                <div class="media-icon">
-                    <i class="fas fa-broadcast-tower"></i>
+                <div class="live-indicator">24H</div>
+
+                <div class="media-content">
+                    <div class="media-icon">
+                        <i class="fas fa-broadcast-tower"></i>
+                    </div>
+                    <h3>Rádio Palavra da Vida</h3>
+                    <p>Música gospel, pregações inspiradoras e programas especiais que edificam sua fé</p>
                 </div>
-                <h3>Rádio Palavra da Vida</h3>
-                <p>Música gospel, pregações inspiradoras e programas especiais que edificam sua fé</p>
-                <button class="btn btn-primary" (click)="openRadio()">
-                    <i class="fas fa-play"></i>
-                    Ouvir Agora
-                </button>
+
+                <div class="btn-container">
+                    <button class="btn btn-primary" (click)="openRadio()">
+                        <i class="fas fa-play"></i>
+                        Ouvir Agora
+                    </button>
+                </div>
 
                 <div class="stats">
                     <div class="stat">
@@ -33,16 +39,22 @@
 
             <!-- Card do YouTube -->
             <div class="media-card youtube-card">
-                <div class="live-indicator">LIVE</div>
-                <div class="media-icon">
-                    <i class="fab fa-youtube"></i>
+                <div class="live-indicator">AO VIVO</div>
+
+                <div class="media-content">
+                    <div class="media-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3>Cultos ao Vivo</h3>
+                    <p>Assista aos cultos, estudos bíblicos e eventos especiais transmitidos diretamente do templo</p>
                 </div>
-                <h3>Cultos ao Vivo</h3>
-                <p>Assista aos cultos, estudos bíblicos e eventos especiais transmitidos diretamente do templo</p>
-                <button class="btn btn-secondary" (click)="openYoutube()">
-                    <i class="fas fa-video"></i>
-                    Assistir Live
-                </button>
+
+                <div class="btn-container">
+                    <button class="btn btn-secondary" (click)="openYoutube()">
+                        <i class="fas fa-video"></i>
+                        Assistir Live
+                    </button>
+                </div>
 
                 <div class="stats">
                     <div class="stat">
@@ -58,15 +70,20 @@
 
             <!-- Card Facebook -->
             <div class="media-card facebook-card">
-                <div class="media-icon">
-                    <i class="fab fa-facebook-messenger"></i>
+                <div class="media-content">
+                    <div class="media-icon">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <h3>Conecte-se Conosco</h3>
+                    <p>Receba mensagens inspiradoras, transmissões ao vivo e eventos direto na sua timeline.</p>
                 </div>
-                <h3>Conecte-se Conosco</h3>
-                <p>Receba mensagens inspiradoras, transmissões ao vivo e eventos direto na sua timeline.</p>
-                <button class="btn btn-secondary" (click)="openFacebook()">
-                    <i class="fas fa-broadcast-tower"></i>
-                    Assistir no Facebook
-                </button>
+
+                <div class="btn-container">
+                    <button class="btn btn-secondary" (click)="openFacebook()">
+                        <i class="fas fa-broadcast-tower"></i>
+                        Seguir
+                    </button>
+                </div>
 
                 <div class="stats">
                     <div class="stat">
@@ -82,15 +99,20 @@
 
             <!-- Card do Instagram -->
             <div class="media-card instagram-card">
-                <div class="media-icon">
-                    <i class="fas fa-camera-retro"></i>
+                <div class="media-content">
+                    <div class="media-icon">
+                        <i class="fas fa-camera-retro"></i>
+                    </div>
+                    <h3>Acompanhe Nossa Jornada</h3>
+                    <p>Veja fotos dos cultos, bastidores e momentos especiais da nossa família em Cristo.</p>
                 </div>
-                <h3>Acompanhe Nossa Jornada</h3>
-                <p>Veja fotos dos cultos, bastidores e momentos especiais da nossa família em Cristo.</p>
-                <button class="btn btn-secondary" (click)="openInstagram()">
-                    <i class="fas fa-heart"></i>
-                    Seguir no Instagram
-                </button>
+
+                <div class="btn-container">
+                    <button class="btn btn-secondary" (click)="openInstagram()">
+                        <i class="fas fa-heart"></i>
+                        Seguir
+                    </button>
+                </div>
 
                 <div class="stats">
                     <div class="stat">

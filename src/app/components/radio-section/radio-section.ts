@@ -29,7 +29,7 @@ export class RadioSection {
 
   openYoutube(): void {
     console.log('Abrindo YouTube...');
-    window.open('https://www.youtube.com/@comunidadepalavradavida1632', '_blank');
+    window.open('https://www.youtube.com/@comunidadepalavradavida1632/streams', '_blank');
   }
 
   openInstagram(): void {

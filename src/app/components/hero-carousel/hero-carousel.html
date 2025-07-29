@@ -2,9 +2,19 @@
 <section id="inicio" class="hero-carousel">
     <div class="carousel-container">
         <div class="slide active">
-            <!-- Seção da Imagem -->
+            <!-- Seção da Imagem/Vídeo -->
             <div class="slide-image-section">
-                <img [src]="image" [alt]="title" class="slide-image">
+                <!-- Imagem para Desktop -->
+                <img [src]="image" [alt]="title" class="slide-image desktop-only">
+
+                <!-- Vídeo para Mobile -->
+                <video class="slide-video mobile-only" autoplay muted [muted]="true" loop playsinline [poster]="image">
+                    <source [src]="videoSrc" type="video/mp4">
+                    <source [src]="videoSrcWebm" type="video/webm">
+                    <!-- Fallback para navegadores sem suporte a vídeo -->
+                    <img [src]="image" [alt]="title" class="fallback-image">
+                </video>
+
                 <div class="image-overlay"></div>
             </div>
 

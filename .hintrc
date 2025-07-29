@@ -29,6 +29,14 @@
           "backdrop-filter"
         ]
       }
+    ],
+    "compat-api/html": [
+      "default",
+      {
+        "ignore": [
+          "video[playsinline]"
+        ]
+      }
     ]
   }
 }

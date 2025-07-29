@@ -22,7 +22,9 @@
         display: flex;
 
         &.active {
-            .slide-image {
+
+            .slide-image,
+            .slide-video {
                 transform: scale(1.05);
             }
 
@@ -33,20 +35,34 @@
         }
     }
 
-    // Seção da Imagem (70% desktop)
+    // Seção da Imagem/Vídeo (70% desktop)
     .slide-image-section {
         width: 70%;
         height: 100%;
         position: relative;
         overflow: hidden;
 
-        .slide-image {
+        .slide-image,
+        .slide-video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
             transition: transform 8s ease-in-out;
             transform: scale(1);
+        }
+
+        .slide-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .fallback-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
         .image-overlay {
@@ -60,7 +76,17 @@
                     rgba(0, 0, 0, 0.3) 100%);
             opacity: 0;
             transition: opacity 0.6s ease;
+            z-index: 1;
         }
+    }
+
+    // Controles de visibilidade para Desktop/Mobile
+    .desktop-only {
+        display: block;
+    }
+
+    .mobile-only {
+        display: none;
     }
 
     // Seção da Comunidade (30% desktop)
@@ -237,10 +263,19 @@
     }
 }
 
-
-// RESPONSIVIDADE MOBILE - Design Moderno com Overlay
+// RESPONSIVIDADE MOBILE - Vídeo em vez de imagem
 @media (max-width: $mobile) {
     .hero-carousel {
+
+        // Troca de visibilidade para mobile
+        .desktop-only {
+            display: none !important;
+        }
+
+        .mobile-only {
+            display: block !important;
+        }
+
         .slide {
             flex-direction: column;
             position: relative;
@@ -254,12 +289,32 @@
             left: 0;
             z-index: 1;
 
+            // Vídeo mobile com otimizações
+            .slide-video {
+                width: 100%;
+                height: 100vh;
+                object-fit: cover;
+                object-position: center;
+                transform: scale(1);
+                transition: none; // Remove transições pesadas no mobile
+
+                // Otimizações para performance mobile
+                &::-webkit-media-controls {
+                    display: none !important;
+                }
+
+                &::-webkit-media-controls-panel {
+                    display: none !important;
+                }
+            }
+
             .image-overlay {
                 opacity: 1;
                 background: linear-gradient(135deg,
                         rgba(0, 0, 0, 0.6) 0%,
                         rgba(0, 0, 0, 0.4) 40%,
                         rgba(0, 0, 0, 0.7) 100%);
+                z-index: 2;
             }
         }
 
@@ -269,7 +324,7 @@
             margin-left: auto;
             background: transparent;
             position: relative;
-            z-index: 2;
+            z-index: 3;
             backdrop-filter: none;
             justify-content: flex-start;
             align-items: flex-end;
@@ -439,5 +494,24 @@
                 font-size: 0.95rem;
             }
         }
+    }
+}
+
+// Otimizações adicionais para vídeo mobile
+@media (max-width: $mobile) and (max-height: 640px) {
+    .hero-carousel {
+        .slide-image-section .slide-video {
+            height: 100vh;
+            min-height: 100vh;
+        }
+    }
+}
+
+// Prevenção de problemas de autoplay em iOS
+@media (max-width: $mobile) {
+    .hero-carousel .slide-image-section .slide-video {
+        -webkit-playsinline: true;
+        -moz-playsinline: true;
+        playsinline: true;
     }
 }
