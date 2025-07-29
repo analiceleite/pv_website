@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./hero-carousel.scss']
 })
 export class HeroCarousel {
-  image = 'assets/worship.png';
+  image = 'assets/background_shirlei.jpg';
   title = 'Faça Parte da Nossa Família';
   subtitle = 'Uma comunidade de fé, amor e propósito';
   verse = '"Porque onde estiverem dois ou três reunidos em meu nome, aí estou eu no meio deles." - Mateus 18:20'
