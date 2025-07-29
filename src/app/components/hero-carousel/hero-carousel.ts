@@ -27,19 +27,20 @@ export class HeroCarousel implements OnInit {
   ngOnInit(): void {
     this.checkMobile();
     this.setupResizeListener();
-  }
-
-  ngAfterViewInit(): void {
-    if (this.isMobile && this.heroVideo) {
-      this.setupVideoOptimizations();
-    }
 
     const video = this.heroVideoRef?.nativeElement;
+    
     if (video) {
       video.muted = true;
       video.play().catch(err => {
         console.warn('Autoplay bloqueado:', err);
       });
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if (this.isMobile && this.heroVideo) {
+      this.setupVideoOptimizations();
     }
   }
 
