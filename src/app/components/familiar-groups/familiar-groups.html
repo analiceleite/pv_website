@@ -9,36 +9,48 @@
             <input type="search" placeholder="Buscar por nome, foco, líder..." [(ngModel)]="searchTerm">
         </div>
 
-        <div class="grupos-grid">
-            <div class="grupo-card" *ngFor="let grupo of paginatedGroups">
-                <div class="grupo-header">
-                    <h3>{{ grupo.name }}</h3>
-                    <span class="foco-badge" [ngClass]="getFocusClass(grupo.focus)">
-                        {{ grupo.focus }}
-                    </span>
+        <!-- Container com swipe para mobile -->
+        <div class="grupos-container" #gruposContainer>
+            <!-- Dica de swipe para mobile -->
+            <div class="swipe-hint" *ngIf="isMobile && totalPages > 1">
+                <div class="swipe-icon">
+                    <i class="fas fa-hand-point-right"></i>
+                    <span>Arraste para navegar</span>
                 </div>
+            </div>
 
-                <div class="grupo-info">
-                    <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <span>{{ grupo.address }}</span>
+            <div class="grupos-grid">
+                <div class="grupo-card" *ngFor="let grupo of paginatedGroups">
+                    <div class="grupo-header">
+                        <h3>{{ grupo.name }}</h3>
+                        <span class="foco-badge" [ngClass]="getFocusClass(grupo.focus)">
+                            {{ grupo.focus }}
+                        </span>
                     </div>
 
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>{{ grupo.hour }}</span>
+                    <div class="grupo-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{ grupo.address }}</span>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>{{ grupo.hour }}</span>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-user"></i>
+                            <span>{{ grupo.lider }}</span>
+                        </div>
                     </div>
 
-                    <div class="info-item">
-                        <i class="fas fa-user"></i>
-                        <span>{{ grupo.lider }}</span>
+                    <div class="grupo-actions">
+                        <a class="btn btn-outline" [href]="'https://wa.me/' + grupo.phone" target="_blank"
+                            rel="noopener">
+                            Fale com o líder
+                        </a>
                     </div>
-                </div>
-
-                <div class="grupo-actions">
-                    <a class="btn btn-outline" [href]="'https://wa.me/' + grupo.phone" target="_blank" rel="noopener">
-                        Fale com o líder
-                    </a>
                 </div>
             </div>
         </div>
@@ -47,16 +59,43 @@
             Nenhum grupo encontrado com esse critério.
         </div>
 
-        <div class="paginacao" *ngIf="totalPages > 1">
-            <button (click)="current_page = current_page - 1" [disabled]="current_page === 1">
+        <!-- Paginação Desktop -->
+        <div class="paginacao desktop-pagination" *ngIf="totalPages > 1 && !isMobile">
+            <button (click)="previousPage()" [disabled]="current_page === 1">
+                <i class="fas fa-chevron-left"></i>
                 Anterior
             </button>
 
             <span>Página {{ current_page }} de {{ totalPages }}</span>
 
-            <button (click)="current_page = current_page + 1" [disabled]="current_page === totalPages">
+            <button (click)="nextPage()" [disabled]="current_page === totalPages">
                 Próxima
+                <i class="fas fa-chevron-right"></i>
             </button>
+        </div>
+
+        <!-- Paginação Mobile -->
+        <div class="paginacao mobile-pagination" *ngIf="totalPages > 1 && isMobile">
+            <div class="pagination-dots">
+                <span *ngFor="let page of [].constructor(totalPages); let i = index" class="dot"
+                    [class.active]="i + 1 === current_page" (click)="current_page = i + 1">
+                </span>
+            </div>
+
+            <div class="pagination-info">
+                <span>{{ current_page }} de {{ totalPages }}</span>
+            </div>
+
+            <!-- Botões alternativos para mobile (opcional) -->
+            <div class="mobile-nav-buttons">
+                <button class="nav-btn prev" (click)="previousPage()" [disabled]="current_page === 1">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <button class="nav-btn next" (click)="nextPage()" [disabled]="current_page === totalPages">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
         </div>
 
     </div>
