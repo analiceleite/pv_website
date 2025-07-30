@@ -75,7 +75,7 @@
 
         <!-- Botão para gerar PIX -->
         <div *ngIf="isValidAmount()" class="generate-pix-section slide-up">
-    
+
             <!-- Mostrar QR Code -->
             <button class="generate-pix-btn desktop-btn" (click)="generatePixQR()"
                 aria-label="Gerar QR Code PIX para pagamento">
@@ -96,7 +96,6 @@
             <div class="qr-modal-content" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
                 <div class="qr-header">
                     <h3 id="qr-modal-title">
-                        <span class="header-icon">🏛️</span>
                         PIX - {{ churchName }}
                     </h3>
                     <button class="close-btn" (click)="hidePixQR()" aria-label="Fechar modal">
@@ -105,18 +104,31 @@
                 </div>
 
                 <div class="qr-body">
-                    <!-- QR Code -->
-                    <div class="qr-code-container">
-                        <div class="qr-wrapper">
-                            <img [src]="qrCodeUrl" width="250" height="250" alt="QR Code PIX para pagamento"
-                                class="qr-image" />
-                        </div>
-                    </div>
 
                     <div class="qr-info">
                         <div class="amount-display">
                             <span class="amount-label">Valor da contribuição</span>
                             <span class="amount-value">{{ formatCurrency(selectedAmount || customAmount) }}</span>
+                        </div>
+
+                        <!-- QR Code -->
+                        <div class="qr-code-container">
+                            <div class="qr-wrapper">
+                                <img [src]="qrCodeUrl" width="250" height="250" alt="QR Code PIX para pagamento"
+                                    class="qr-image" />
+                            </div>
+                        </div>
+
+                        <div class="pix-code-section">
+                            <button class="copy-btn-main" (click)="copyPixKey()" aria-label="Copiar código PIX">
+                                <span class="copy-icon">📋</span>
+                                <span>Copiar Código PIX</span>
+                            </button>
+
+                            <div class="copy-success" *ngIf="showCopyMessage" role="alert">
+                                <span class="success-icon">✅</span>
+                                <span>Código PIX copiado!</span>
+                            </div>
                         </div>
 
                         <div class="instructions">
@@ -130,19 +142,6 @@
                                 <li>Escaneie o código QR acima</li>
                                 <li>Confirme o pagamento</li>
                             </ol>
-                        </div>
-
-                        <!-- Código PIX -->
-                        <div class="pix-code-section">
-                            <button class="copy-btn-main" (click)="copyPixKey()" aria-label="Copiar código PIX">
-                                <span class="copy-icon">📋</span>
-                                <span>Copiar Código PIX</span>
-                            </button>
-
-                            <div class="copy-success" *ngIf="showCopyMessage" role="alert">
-                                <span class="success-icon">✅</span>
-                                <span>Código PIX copiado!</span>
-                            </div>
                         </div>
                     </div>
                 </div>

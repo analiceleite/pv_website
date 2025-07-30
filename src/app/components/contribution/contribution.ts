@@ -49,22 +49,6 @@ export class Contribution {
 
   contributionOptions: ContributionOption[] = [
     {
-      id: 'dizimo',
-      title: 'Dízimo',
-      description: 'Entrega fiel de 10% como reconhecimento da provisão de Deus',
-      icon: '💝',
-      verse: 'Trazei todos os dízimos à casa do tesouro',
-      verseRef: 'Malaquias 3:10'
-    },
-    {
-      id: 'oferta',
-      title: 'Oferta Voluntária',
-      description: 'Contribuição espontânea movida pela gratidão e amor',
-      icon: '🙏',
-      verse: 'Deus ama ao que dá com alegria',
-      verseRef: '2 Coríntios 9:7'
-    },
-    {
       id: 'missoes',
       title: 'Missões',
       description: 'Apoio para evangelização e plantação de igrejas',
