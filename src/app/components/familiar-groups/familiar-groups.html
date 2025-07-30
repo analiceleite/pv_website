@@ -9,16 +9,8 @@
             <input type="search" placeholder="Buscar por nome, foco, líder..." [(ngModel)]="searchTerm">
         </div>
 
-        <!-- Container com swipe para mobile -->
-        <div class="grupos-container" #gruposContainer>
-            <!-- Dica de swipe para mobile -->
-            <div class="swipe-hint" *ngIf="isMobile && totalPages > 1">
-                <div class="swipe-icon">
-                    <i class="fas fa-hand-point-right"></i>
-                    <span>Arraste para navegar</span>
-                </div>
-            </div>
-
+        <!-- Layout Desktop - Grid com Paginação -->
+        <div class="desktop-layout">
             <div class="grupos-grid">
                 <div class="grupo-card" *ngFor="let grupo of paginatedGroups">
                     <div class="grupo-header">
@@ -53,49 +45,74 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="no-results" *ngIf="filteredGroups().length === 0">
-            Nenhum grupo encontrado com esse critério.
-        </div>
-
-        <!-- Paginação Desktop -->
-        <div class="paginacao desktop-pagination" *ngIf="totalPages > 1 && !isMobile">
-            <button (click)="previousPage()" [disabled]="current_page === 1">
-                <i class="fas fa-chevron-left"></i>
-                Anterior
-            </button>
-
-            <span>Página {{ current_page }} de {{ totalPages }}</span>
-
-            <button (click)="nextPage()" [disabled]="current_page === totalPages">
-                Próxima
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-
-        <!-- Paginação Mobile -->
-        <div class="paginacao mobile-pagination" *ngIf="totalPages > 1 && isMobile">
-            <div class="pagination-dots">
-                <span *ngFor="let page of [].constructor(totalPages); let i = index" class="dot"
-                    [class.active]="i + 1 === current_page" (click)="current_page = i + 1">
-                </span>
-            </div>
-
-            <div class="pagination-info">
-                <span>{{ current_page }} de {{ totalPages }}</span>
-            </div>
-
-            <!-- Botões alternativos para mobile (opcional) -->
-            <div class="mobile-nav-buttons">
-                <button class="nav-btn prev" (click)="previousPage()" [disabled]="current_page === 1">
+            <!-- Paginação Desktop -->
+            <div class="paginacao" *ngIf="totalPages > 1">
+                <button (click)="previousPage()" [disabled]="current_page === 1">
                     <i class="fas fa-chevron-left"></i>
+                    Anterior
                 </button>
 
-                <button class="nav-btn next" (click)="nextPage()" [disabled]="current_page === totalPages">
+                <span>Página {{ current_page }} de {{ totalPages }}</span>
+
+                <button (click)="nextPage()" [disabled]="current_page === totalPages">
+                    Próxima
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
+        </div>
+
+        <!-- Layout Mobile - Carrossel Horizontal -->
+        <div class="mobile-layout">
+            <div class="scroll-hint" *ngIf="allFilteredGroups.length > 1">
+                <i class="fas fa-arrow-left"></i>
+                <span>Deslize para ver mais grupos</span>
+                <i class="fas fa-arrow-right"></i>
+            </div>
+
+            <div class="grupos-carousel">
+                <div class="grupo-card mobile-card" *ngFor="let grupo of allFilteredGroups; let i = index">
+                    <div class="grupo-header">
+                        <h3>{{ grupo.name }}</h3>
+                        <span class="foco-badge" [ngClass]="getFocusClass(grupo.focus)">
+                            {{ grupo.focus }}
+                        </span>
+                    </div>
+
+                    <div class="grupo-info">
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>{{ grupo.address }}</span>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-clock"></i>
+                            <span>{{ grupo.hour }}</span>
+                        </div>
+
+                        <div class="info-item">
+                            <i class="fas fa-user"></i>
+                            <span>{{ grupo.lider }}</span>
+                        </div>
+                    </div>
+
+                    <div class="grupo-actions">
+                        <a class="btn btn-outline" [href]="'https://wa.me/' + grupo.phone" target="_blank"
+                            rel="noopener">
+                            Fale com o líder
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-counter" *ngIf="allFilteredGroups.length > 1">
+                <span>{{ allFilteredGroups.length }} grupos encontrados</span>
+            </div>
+        </div>
+
+        <!-- Mensagem quando não há resultados -->
+        <div class="no-results" *ngIf="filteredGroups().length === 0">
+            Nenhum grupo encontrado com esse critério.
         </div>
 
     </div>

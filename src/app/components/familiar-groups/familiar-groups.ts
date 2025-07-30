@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FamiliarGroup } from '../../services/interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -10,18 +10,11 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './familiar-groups.scss'
 })
 
-export class FamiliarGroups implements AfterViewInit {
-  @ViewChild('gruposContainer', { static: false }) gruposContainer!: ElementRef;
-
+export class FamiliarGroups {
   searchTerm: string = '';
+
   current_page: number = 1;
   items_per_page: number = 4;
-
-  // Variáveis para controle do swipe
-  private startX: number = 0;
-  private startY: number = 0;
-  private isSwiping: boolean = false;
-  readonly minSwipeDistance: number = 50;
 
   groups: FamiliarGroup[] = [
     {
@@ -138,14 +131,16 @@ export class FamiliarGroups implements AfterViewInit {
     }
   ];
 
-  ngAfterViewInit() {
-    this.setupSwipeListeners();
-  }
-
+  // Para desktop - mantém paginação
   get paginatedGroups(): FamiliarGroup[] {
     const filtered = this.filteredGroups();
     const start = (this.current_page - 1) * this.items_per_page;
     return filtered.slice(start, start + this.items_per_page);
+  }
+
+  // Para mobile - todos os grupos filtrados
+  get allFilteredGroups(): FamiliarGroup[] {
+    return this.filteredGroups();
   }
 
   get totalPages(): number {
@@ -164,7 +159,7 @@ export class FamiliarGroups implements AfterViewInit {
   filteredGroups(): FamiliarGroup[] {
     if (!this.searchTerm.trim()) return this.groups;
 
-    this.current_page = 1;
+    this.current_page = 1; // Reset página ao filtrar
 
     const term = this.searchTerm.toLowerCase();
     return this.groups.filter(grupo =>
@@ -176,7 +171,7 @@ export class FamiliarGroups implements AfterViewInit {
     );
   }
 
-  // Métodos para navegação de páginas
+  // Métodos para navegação desktop
   previousPage() {
     if (this.current_page > 1) {
       this.current_page--;
@@ -187,98 +182,6 @@ export class FamiliarGroups implements AfterViewInit {
     if (this.current_page < this.totalPages) {
       this.current_page++;
     }
-  }
-
-  // Setup dos listeners de swipe
-  private setupSwipeListeners() {
-    if (!this.gruposContainer) return;
-
-    const container = this.gruposContainer.nativeElement;
-
-    // Touch events
-    container.addEventListener('touchstart', (e: TouchEvent) => this.handleTouchStart(e), { passive: true });
-    container.addEventListener('touchmove', (e: TouchEvent) => this.handleTouchMove(e), { passive: true });
-    container.addEventListener('touchend', (e: TouchEvent) => this.handleTouchEnd(e), { passive: true });
-
-    // Mouse events para desktop (opcional)
-    container.addEventListener('mousedown', (e: MouseEvent) => this.handleMouseStart(e));
-    container.addEventListener('mousemove', (e: MouseEvent) => this.handleMouseMove(e));
-    container.addEventListener('mouseup', (e: MouseEvent) => this.handleMouseEnd(e));
-    container.addEventListener('mouseleave', (e: MouseEvent) => this.handleMouseEnd(e));
-  }
-
-  // Touch handlers
-  private handleTouchStart(e: TouchEvent) {
-    this.startX = e.touches[0].clientX;
-    this.startY = e.touches[0].clientY;
-    this.isSwiping = true;
-  }
-
-  private handleTouchMove(e: TouchEvent) {
-    if (!this.isSwiping) return;
-
-    const currentX = e.touches[0].clientX;
-    const currentY = e.touches[0].clientY;
-    const diffX = Math.abs(currentX - this.startX);
-    const diffY = Math.abs(currentY - this.startY);
-
-    // Se o movimento vertical for maior que horizontal, não é um swipe horizontal
-    if (diffY > diffX) {
-      this.isSwiping = false;
-    }
-  }
-
-  private handleTouchEnd(e: TouchEvent) {
-    if (!this.isSwiping) return;
-
-    const endX = e.changedTouches[0].clientX;
-    const diffX = this.startX - endX;
-
-    if (Math.abs(diffX) > this.minSwipeDistance) {
-      if (diffX > 0) {
-        // Swipe para esquerda - próxima página
-        this.nextPage();
-      } else {
-        // Swipe para direita - página anterior
-        this.previousPage();
-      }
-    }
-
-    this.isSwiping = false;
-  }
-
-  // Mouse handlers (opcional para desktop)
-  private handleMouseStart(e: MouseEvent) {
-    this.startX = e.clientX;
-    this.startY = e.clientY;
-    this.isSwiping = true;
-  }
-
-  private handleMouseMove(e: MouseEvent) {
-    if (!this.isSwiping) return;
-
-    const diffX = Math.abs(e.clientX - this.startX);
-    const diffY = Math.abs(e.clientY - this.startY);
-
-    if (diffY > diffX) {
-      this.isSwiping = false;
-    }
-  }
-
-  private handleMouseEnd(e: MouseEvent) {
-    if (!this.isSwiping) return;
-
-    const diffX = this.startX - e.clientX;
-
-    if (Math.abs(diffX) > this.minSwipeDistance) {
-      if (diffX > 0) {
-        this.nextPage();
-      } else {
-        this.previousPage();
-      }
-    }
-
-    this.isSwiping = false;
   }
 
   // Método para verificar se é dispositivo móvel
