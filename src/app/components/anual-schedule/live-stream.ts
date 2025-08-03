@@ -1,4 +1,4 @@
-já import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 interface AgendaItem {
