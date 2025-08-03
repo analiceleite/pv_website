@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+já import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 
 interface AgendaItem {
@@ -17,7 +17,7 @@ interface AgendaItem {
 export class AnualSchedule {
   isLiveNow = false;
   nextCulto = 'Domingo às 18h30';
-  streamUrl = 'https://youtube.com/live/sua-transmissao';
+  streamUrl = 'https://youtube.com/@comunidadepalavradavida1632?si=Q5zKlZJqEwArCstD';
 
   activeTab: 'horarios' | 'agenda' = 'horarios';
   selectedEventType: string = 'todos';
