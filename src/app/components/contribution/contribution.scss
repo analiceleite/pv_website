@@ -436,18 +436,293 @@
         }
 
         .amount-section {
-            .amount-title {
-                display: flex;
-                align-items: center;
-                gap: $spacing-sm;
-                color: $text-primary;
-                margin-bottom: $spacing-lg;
-                font-size: $font-xl;
-                font-weight: $font-bold;
+            margin-bottom: $spacing-xl;
 
-                .title-icon {
-                    font-size: $font-2xl;
+            // Seção de revelação
+            .reveal-section {
+                margin-bottom: $spacing-xl;
+            }
+
+            // Botão para revelar as opções de valores
+            .reveal-amounts-btn {
+                width: 100%;
+                background: linear-gradient(135deg, rgba($white, 0.95) 0%, rgba($light-gray, 0.95) 100%);
+                border: 2px solid transparent;
+                border-radius: $radius-xl;
+                padding: 0;
+                cursor: pointer;
+                transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                box-shadow: 0 8px 32px rgba($black, 0.1);
+                position: relative;
+                overflow: hidden;
+                backdrop-filter: blur(10px);
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(135deg, $primary-red, $accent-sky, $primary-red);
+                    border-radius: $radius-xl;
+                    padding: 2px;
+                    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                    mask-composite: exclude;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                }
+
+                &:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 16px 48px rgba($primary-red, 0.15);
+                    border-color: rgba($primary-red, 0.2);
+
+                    &::before {
+                        opacity: 1;
+                    }
+
+                    .reveal-content {
+                        background: linear-gradient(135deg, rgba($primary-red, 0.05) 0%, rgba($accent-sky, 0.05) 100%);
+                    }
+
+                    .reveal-arrow {
+                        transform: translateY(2px);
+                        color: $primary-red;
+                    }
+                }
+
+                &:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 4px rgba($primary-red, 0.2);
+                }
+
+                .reveal-content {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: $spacing-xl $spacing-xxxl;
+                    background: transparent;
+                    border-radius: $radius-xl;
+                    transition: all 0.3s ease;
+                    position: relative;
+                    z-index: 2;
+                }
+
+                .reveal-icon {
+                    font-size: 2rem;
+                    color: $primary-red;
+                    margin-right: $spacing-lg;
+                    filter: drop-shadow(0 2px 8px rgba($primary-red, 0.3));
+                    animation: gentle-float 3s ease-in-out infinite;
+                }
+
+                .reveal-text-container {
+                    flex: 1;
+                    text-align: left;
+
+                    .reveal-title {
+                        display: block;
+                        font-size: $font-xl;
+                        font-weight: $font-bold;
+                        color: $text-primary;
+                        margin-bottom: 4px;
+                        line-height: 1.2;
+                    }
+
+                    .reveal-subtitle {
+                        display: block;
+                        font-size: $font-sm;
+                        color: $text-secondary;
+                        font-weight: $font-medium;
+                    }
+                }
+
+                .reveal-arrow {
                     color: $accent-sky;
+                    transition: all 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            // Container dos valores que aparece/desaparece
+            .amounts-container {
+                background: rgba($white, 0.98);
+                border-radius: $radius-xl;
+                padding: $spacing-xxxl;
+                box-shadow: 0 12px 40px rgba($black, 0.08);
+                border: 1px solid rgba($primary-red, 0.1);
+                backdrop-filter: blur(10px);
+                position: relative;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 60px;
+                    height: 4px;
+                    background: $gradient-primary;
+                    border-radius: 0 0 $radius-sm $radius-sm;
+                }
+
+                .amounts-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: $spacing-xl;
+                    padding-bottom: $spacing-lg;
+                    border-bottom: 1px solid rgba($border-gray, 0.5);
+
+                    .amounts-title {
+                        display: flex;
+                        align-items: center;
+                        gap: $spacing-sm;
+                        color: $text-primary;
+                        margin: 0;
+                        font-size: $font-xl;
+                        font-weight: $font-bold;
+
+                        .title-icon {
+                            font-size: $font-2xl;
+                            color: $primary-red;
+                            filter: drop-shadow(0 2px 4px rgba($primary-red, 0.2));
+                        }
+                    }
+
+                    .collapse-btn {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 40px;
+                        height: 40px;
+                        background: rgba($light-gray, 0.8);
+                        border: 1px solid rgba($border-gray, 0.6);
+                        border-radius: $radius-round;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        color: $text-secondary;
+
+                        &:hover {
+                            background: rgba($primary-red, 0.1);
+                            border-color: $primary-red;
+                            color: $primary-red;
+                            transform: scale(1.1);
+                            box-shadow: 0 4px 12px rgba($primary-red, 0.2);
+                        }
+
+                        &:focus {
+                            outline: none;
+                            box-shadow: 0 0 0 3px rgba($primary-red, 0.2);
+                        }
+                    }
+                }
+            }
+
+            // Animações específicas
+            .fade-in-scale {
+                animation: fadeInScale 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            }
+
+            @keyframes fadeInScale {
+                from {
+                    opacity: 0;
+                    transform: scale(0.95) translateY(-20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+            }
+
+            @keyframes gentle-float {
+
+                0%,
+                100% {
+                    transform: translateY(0px);
+                }
+
+                50% {
+                    transform: translateY(-6px);
+                }
+            }
+
+            // Animação de saída
+            .fade-out-scale {
+                animation: fadeOutScale 0.3s ease-in-out forwards;
+            }
+
+            @keyframes fadeOutScale {
+                from {
+                    opacity: 1;
+                    transform: scale(1) translateY(0);
+                }
+
+                to {
+                    opacity: 0;
+                    transform: scale(0.95) translateY(-20px);
+                }
+            }
+
+            // Responsividade
+            @media (max-width: $mobile) {
+                .reveal-amounts-btn {
+                    .reveal-content {
+                        padding: $spacing-lg $spacing-xl;
+                    }
+
+                    .reveal-icon {
+                        font-size: 1.5rem;
+                        margin-right: $spacing-md;
+                    }
+
+                    .reveal-text-container {
+                        .reveal-title {
+                            font-size: $font-lg;
+                        }
+
+                        .reveal-subtitle {
+                            font-size: $font-xs;
+                        }
+                    }
+                }
+
+                .amounts-container {
+                    padding: $spacing-xl;
+
+                    .amounts-header {
+                        .amounts-title {
+                            font-size: $font-lg;
+
+                            .title-icon {
+                                font-size: $font-xl;
+                            }
+                        }
+
+                        .collapse-btn {
+                            width: 36px;
+                            height: 36px;
+                        }
+                    }
+                }
+            }
+
+            @media (max-width: 480px) {
+                .reveal-amounts-btn {
+                    .reveal-content {
+                        padding: $spacing-md $spacing-lg;
+                    }
+
+                    .reveal-text-container {
+                        .reveal-title {
+                            font-size: $font-base;
+                        }
+                    }
+                }
+
+                .amounts-container {
+                    padding: $spacing-lg;
                 }
             }
         }

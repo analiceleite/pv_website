@@ -29,6 +29,9 @@ export class Contribution {
   pixCode: string = '';
   showCopyMessage = false;
 
+  currentVerseIndex = 0;
+  showAmountOptions: boolean = false;
+
   // Versículos inspiradores sobre contribuição
   inspirationalVerses = [
     {
@@ -45,7 +48,6 @@ export class Contribution {
     }
   ];
 
-  currentVerseIndex = 0;
 
   contributionOptions: ContributionOption[] = [
     {
@@ -105,6 +107,28 @@ export class Contribution {
     this.qrCodeUrl = `${baseUrl}?data=${encodeURIComponent(this.pixCode)}&size=250x250`;
 
     this.showQRCode = true;
+  }
+
+  collapseAmounts(): void {
+    const container = document.querySelector('.amounts-container');
+    if (container) {
+      container.classList.remove('fade-in-scale');
+      container.classList.add('fade-out-scale');
+
+      setTimeout(() => {
+        this.showAmountOptions = false;
+        this.resetAmountSelection();
+      }, 300);
+    } else {
+      this.showAmountOptions = false;
+      this.resetAmountSelection();
+    }
+  }
+
+  private resetAmountSelection(): void {
+    this.selectedAmount = null;
+    this.customAmount = null;
+    this.showCustomInput = false;
   }
 
   // GERADOR PIX SIMPLIFICADO
