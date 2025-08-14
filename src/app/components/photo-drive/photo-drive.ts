@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './photo-drive.scss'
 })
 export class PhotoDrive {
-  driveUrl = 'https://drive.google.com/drive/folders/1Bjpl6t__N5OcT2Jf6apZc9Jq_KzknwZJ'; 
+  driveUrl = 'https://drive.google.com/drive/folders/1Bjpl6t__N5OcT2Jf6apZc9Jq_KzknwZJ?usp=sharing'; 
 
   accessDrive() {
     window.open(this.driveUrl, '_blank');
